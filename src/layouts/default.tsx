@@ -12,7 +12,7 @@ const Default = ({ children }: Props) => {
       <Navbar />
 
       {/* main */}
-      <main className="max-w-screen-xl mx-auto px-[1rem] min-h-[80vh]">{children}</main>
+      <main className="max-w-screen-xl mx-auto px-[1rem] min-h-[80vh] ">{children}</main>
 
       {/* footer */}
       <Footer />
