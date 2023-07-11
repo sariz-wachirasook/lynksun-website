@@ -1,20 +1,18 @@
 import { useState, type ReactElement } from 'react';
 import Layout from '../layouts/default';
-import type { NextPageWithLayout } from './_app';
 import Input from '../components/input/input';
-import Button from '@/components/button';
-import Card from '@/components/card';
-import Link from 'next/link';
+import Button from '../components/button';
+import Card from '../components/card';
 
-interface Link {
+interface a {
   url: string;
   shortUrl: string;
   expiresAt: string;
 }
 
-const Page: NextPageWithLayout = () => {
+const Page = () => {
   const [loading, setLoading] = useState(false);
-  const [link, setLink] = useState<Link>({
+  const [link, seta] = useState<a>({
     url: '',
     shortUrl: '',
     expiresAt: '',
@@ -27,7 +25,7 @@ const Page: NextPageWithLayout = () => {
 
     setLoading(true);
     setTimeout(() => {
-      setLink({
+      seta({
         url: 'https://google.com',
         shortUrl: 'https://lynksun.com/abc123',
         expiresAt: '2021-10-10 10:10:10',
@@ -41,7 +39,7 @@ const Page: NextPageWithLayout = () => {
   };
 
   return (
-    <div>
+    <Layout>
       {/* header */}
       <div className="text-center mb-5">
         <h1>Lynksun</h1>
@@ -50,14 +48,14 @@ const Page: NextPageWithLayout = () => {
 
       {/* form */}
       <Card className="mx-auto w-full max-w-xl p-5 mb-5">
-        <h2 className="text-center mb-5">Shorten Your Link</h2>
+        <h2 className="text-center mb-5">Shorten Your a</h2>
         <form onSubmit={handleSubmit}>
           <Input name="url" label="Enter The URL" placeholder="Enter The URL" required />
 
           <Button type="submit" label="Submit" className="mx-auto mb-5" />
           <p>
             any link will expires in 24hr, consider to
-            <Link href="/register">register</Link>
+            <a href="/register">register</a>
             to get unlimited link expires
           </p>
         </form>
@@ -93,7 +91,7 @@ const Page: NextPageWithLayout = () => {
       {link.shortUrl && !loading && (
         <Card className="mx-auto w-full max-w-xl p-5">
           <div className="mb-4">
-            <h3 className="mb-4">Your Generate Link is Ready</h3>
+            <h3 className="mb-4">Your Generate a is Ready</h3>
 
             <div className="grid grid-cols-[1fr,auto] gap-4">
               <Input name="url" className="mb-0" required value={link.shortUrl} disabled />
@@ -102,12 +100,8 @@ const Page: NextPageWithLayout = () => {
           </div>
         </Card>
       )}
-    </div>
+    </Layout>
   );
-};
-
-Page.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
 };
 
 export default Page;
