@@ -53,14 +53,15 @@ const Page: FC = () => {
       {/* form */}
       <section>
         <Card className="mx-auto w-full max-w-xl p-5 mb-5">
-          <h2 className="text-center mb-5">Shorten Your a</h2>
+          <h2 className="text-center mb-5">{t('shorten-your-link')}</h2>
           <form onSubmit={handleSubmit}>
             <Input name="url" label="Enter The URL" placeholder="Enter The URL" required />
 
-            <Button type="submit" label="Submit" className="mb-5" />
+            <Button type="submit" label={t('submit')} className="mb-5" />
             <p>
-              any link will expires in 24hr, consider to <a href="/register">register</a> to get
-              unlimited link expires
+              {t('any-link-will-expires-in-24hr-consider-to')}{' '}
+              <a href="/register">{t('register')}</a>
+              {t('to-get-unlimited-link-expires-time')}
             </p>
           </form>
         </Card>
@@ -88,16 +89,16 @@ const Page: FC = () => {
                     fill="currentFill"
                   />
                 </svg>
-                <span className="sr-only">Loading...</span>
+                <span className="sr-only">{t('loading')}...</span>
               </div>
-              <p>Generating your link...</p>
+              <p>{t('generating-your-link')}...</p>
             </div>
           </Card>
         )}
         {link.shortUrl && !loading && (
           <Card className="mx-auto w-full max-w-xl p-5">
             <div className="mb-4">
-              <h3 className="mb-4">Your Generate a is Ready</h3>
+              <h3 className="mb-4">{t('your-link-is-ready')}</h3>
               <div className="grid grid-cols-[1fr,auto] gap-4">
                 <Input name="url" className="mb-0" required value={link.shortUrl} disabled />
                 <Button label="Copy" onClick={() => handleCopy()} />

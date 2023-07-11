@@ -12,6 +12,8 @@ interface Props {
   maxLength?: number;
   value?: string;
   disabled?: boolean;
+  autoComplete?: string;
+  pattern?: string;
 }
 
 const Text: FC<Props> = ({
@@ -24,13 +26,9 @@ const Text: FC<Props> = ({
   value,
   disabled = false,
   className = '',
+  autoComplete,
+  pattern,
 }) => {
-  let pattern = null;
-
-  if (type === 'email') {
-    pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
-  }
-
   return (
     <div className={`${label ? 'mb-4' : ''} ${className}`}>
       {label && <Label label={label} name={name} required={required} />}
@@ -43,6 +41,7 @@ const Text: FC<Props> = ({
         required={required}
         maxLength={maxLength}
         {...(pattern && { pattern })}
+        {...(autoComplete && { autoComplete })}
         value={value}
         disabled={disabled}
       />
