@@ -4,6 +4,7 @@ import type { NextPageWithLayout } from './_app';
 import Input from '../components/input/input';
 import Button from '@/components/button';
 import Card from '@/components/card';
+import Link from 'next/link';
 
 interface Link {
   url: string;
@@ -56,7 +57,7 @@ const Page: NextPageWithLayout = () => {
           <Button type="submit" label="Submit" className="mx-auto mb-5" />
           <p>
             any link will expires in 24hr, consider to
-            <a href="/register">register</a>
+            <Link href="/register">register</Link>
             to get unlimited link expires
           </p>
         </form>
@@ -66,7 +67,7 @@ const Page: NextPageWithLayout = () => {
       {loading && (
         <Card className="mx-auto w-full max-w-xl p-5">
           <div className="text-center">
-            <div role="status" className='mb-4'>
+            <div role="status" className="mb-4">
               <svg
                 aria-hidden="true"
                 className="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -92,10 +93,10 @@ const Page: NextPageWithLayout = () => {
       {link.shortUrl && !loading && (
         <Card className="mx-auto w-full max-w-xl p-5">
           <div className="mb-4">
-            <h3 className='mb-4'>Your Generate Link is Ready</h3>
+            <h3 className="mb-4">Your Generate Link is Ready</h3>
 
             <div className="grid grid-cols-[1fr,auto] gap-4">
-              <Input name="url" className='mb-0' required value={link.shortUrl} disabled />
+              <Input name="url" className="mb-0" required value={link.shortUrl} disabled />
               <Button label="Copy" onClick={() => handleCopy()} />
             </div>
           </div>
