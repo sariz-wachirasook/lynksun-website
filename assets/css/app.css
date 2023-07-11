@@ -1,3 +1,7 @@
 @charset "UTF-8";
 
 @import './base/normalize.css';
+@import './base/typography.css';
+
+@import './components/button.css';
+@import './components/card.css';
