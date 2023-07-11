@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: Props) => {
+const Default = ({ children }: Props) => {
   return (
     <>
       {/* header */}
@@ -20,4 +20,4 @@ const Layout = ({ children }: Props) => {
   );
 };
 
-export default Layout;
+export default Default;

@@ -1,6 +1,8 @@
+import { type FC } from 'react';
+
 import Label from './label';
 
-interface props {
+interface Props {
   name: string;
   label?: string;
   placeholder?: string;
@@ -12,7 +14,7 @@ interface props {
   disabled?: boolean;
 }
 
-const Text = ({
+const Text: FC<Props> = ({
   name,
   label,
   placeholder,
@@ -22,7 +24,7 @@ const Text = ({
   value,
   disabled = false,
   className = '',
-}: props) => {
+}) => {
   let pattern = null;
 
   if (type === 'email') {

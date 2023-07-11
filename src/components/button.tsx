@@ -1,14 +1,16 @@
+import { type FC, type ReactNode } from 'react';
+
 interface Props {
   label: string;
-  prefix?: React.ReactNode;
-  suffix?: React.ReactNode;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
   type?: 'button' | 'submit' | 'reset';
   buttonType?: 'default' | 'alternative';
   className?: string;
   onClick?: () => void;
 }
 
-const Button = ({
+const Button: FC<Props> = ({
   label,
   type = 'button',
   onClick,
@@ -16,7 +18,7 @@ const Button = ({
   prefix,
   suffix,
   className,
-}: Props) => {
+}) => {
   const modifier = buttonType ? `btn--${buttonType}` : '';
   return (
     <button type={type} className={`btn ${modifier} ${className}`} onClick={onClick}>

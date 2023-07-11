@@ -1,9 +1,11 @@
+import { type FC, type ReactNode } from 'react';
+
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
-const Card = ({ children, className }: Props) => {
+const Card: FC<Props> = ({ children, className }) => {
   return <div className={`card ${className}`}>{children}</div>;
 };
 

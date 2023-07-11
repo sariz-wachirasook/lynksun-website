@@ -1,3 +1,5 @@
+import { type FC } from 'react';
+
 interface Props {
   label: string;
   name: string;
@@ -5,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-const Label = ({ label, required, className, name }: Props) => {
+const Label: FC<Props> = ({ label, required, className, name }) => {
   return (
     <label htmlFor={name} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
       {label} {required && <span className="text-red-500">*</span>}

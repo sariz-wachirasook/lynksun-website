@@ -1,22 +1,24 @@
-import { useState, type ReactElement } from 'react';
-import Layout from '../layouts/default';
+import { useState, type FC } from 'react';
+import DefaultLayout from '../layouts/default';
 import Input from '../components/input/input';
 import Button from '../components/button';
 import Card from '../components/card';
+import { useTranslation } from 'react-i18next';
 
-interface a {
+interface Link {
   url: string;
   shortUrl: string;
   expiresAt: string;
 }
 
-const Page = () => {
+const Page: FC = () => {
   const [loading, setLoading] = useState(false);
-  const [link, seta] = useState<a>({
+  const [link, seta] = useState<Link>({
     url: '',
     shortUrl: '',
     expiresAt: '',
   });
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,11 +41,11 @@ const Page = () => {
   };
 
   return (
-    <Layout>
+    <DefaultLayout>
       {/* header */}
       <div className="text-center mb-5">
-        <h1>Lynksun</h1>
-        <p>Shorten your links</p>
+        <h1>{t('lynksun')}</h1>
+        <p>{t('shorten-your-link')}</p>
       </div>
 
       {/* form */}
@@ -92,7 +94,6 @@ const Page = () => {
         <Card className="mx-auto w-full max-w-xl p-5">
           <div className="mb-4">
             <h3 className="mb-4">Your Generate a is Ready</h3>
-
             <div className="grid grid-cols-[1fr,auto] gap-4">
               <Input name="url" className="mb-0" required value={link.shortUrl} disabled />
               <Button label="Copy" onClick={() => handleCopy()} />
@@ -100,7 +101,7 @@ const Page = () => {
           </div>
         </Card>
       )}
-    </Layout>
+    </DefaultLayout>
   );
 };
 
