@@ -3,7 +3,7 @@ import DefaultLayout from '../../layouts/default';
 import Button from '../../components/button';
 import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
-import Auth from '../../api/auth';
+import Auth from '../../api/v1/auth';
 
 const Login: FC = () => {
   const { t } = useTranslation();

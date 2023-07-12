@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import Toast from '../utils/toast';
+
 class BaseApi {
   public static instance: BaseApi;
   public API_BASE_URL: string;
 
   constructor() {
-    this.API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000';
+    this.API_BASE_URL = '/api/v1';
   }
 
   public static getInstance(): BaseApi {

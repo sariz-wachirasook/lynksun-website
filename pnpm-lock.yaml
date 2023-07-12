@@ -17,6 +17,9 @@ dependencies:
   '@fortawesome/react-fontawesome':
     specifier: ^0.2.0
     version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.0)(react@18.2.0)
+  '@types/http-proxy-middleware':
+    specifier: ^1.0.0
+    version: 1.0.0
   '@types/node':
     specifier: ^16.18.38
     version: 16.18.38
@@ -47,6 +50,9 @@ dependencies:
   flowbite:
     specifier: ^1.7.0
     version: 1.7.0
+  http-proxy-middleware:
+    specifier: ^2.0.6
+    version: 2.0.6(@types/express@4.17.17)
   i18next:
     specifier: ^23.2.8
     version: 23.2.8
@@ -2581,6 +2587,16 @@ packages:
 
   /@types/http-errors@2.0.1:
     resolution: {integrity: sha512-/K3ds8TRAfBvi5vfjuz8y6+GiAYBZ0x4tXv1Av6CWBWn0IlADc+ZX9pMq7oU0fNQPnBwIZl3rmeLp6SBApbxSQ==}
+    dev: false
+
+  /@types/http-proxy-middleware@1.0.0:
+    resolution: {integrity: sha512-/s8lFX6rT43hSPqjjD8KNuu0SkPKY7uIdR6u9DCxVqCRhAvfKxGbVOixJsAT2mdpSnCyrGFAGoB39KFh6tmRxw==}
+    deprecated: This is a stub types definition. http-proxy-middleware provides its own type definitions, so you do not need this installed.
+    dependencies:
+      http-proxy-middleware: 2.0.6(@types/express@4.17.17)
+    transitivePeerDependencies:
+      - '@types/express'
+      - debug
     dev: false
 
   /@types/http-proxy@1.17.11:
