@@ -3,9 +3,27 @@ import DefaultLayout from '../../layouts/default';
 import Button from '../../components/button';
 import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
+import Auth from '../../api/auth';
 
 const Login: FC = () => {
   const { t } = useTranslation();
+
+  console.log(process.env);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const AuthService = new Auth();
+
+    try {
+      const request = await AuthService.login({
+        email: '',
+        password: '',
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <DefaultLayout>
       <section>
@@ -21,7 +39,7 @@ const Login: FC = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 {t('sign-in-to-your-account')}
               </h1>
-              <form action="#">
+              <form onSubmit={handleSubmit} className="flex flex-col">
                 <Text
                   type="email"
                   name="email"

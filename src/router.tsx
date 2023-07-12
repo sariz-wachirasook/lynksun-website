@@ -1,12 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from 'react';
 
-import HonePage from './pages/index';
-import Error404 from './pages/404';
-import IndexSlug from './pages/[slug]';
-import Login from './pages/login/index';
-import Register from './pages/register/index';
-import ResetPassword from './pages/reset-password/[token]';
-import ForgotPassword from './pages/forgot-password';
+const HonePage = React.lazy(() => import('./pages/index'));
+const Error404 = React.lazy(() => import('./pages/404'));
+const IndexSlug = React.lazy(() => import('./pages/[slug]'));
+const Login = React.lazy(() => import('./pages/login/index'));
+const Register = React.lazy(() => import('./pages/register/index'));
+const ResetPassword = React.lazy(() => import('./pages/reset-password/[token]'));
+const ForgotPassword = React.lazy(() => import('./pages/forgot-password'));
 
 const router = createBrowserRouter([
   {
