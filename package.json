@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node script.js && react-scripts start",
-    "postinstall": "node script.js",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "dev": "pnpm run dev:local",
+    "dev:local": "node ./tools/index.js && react-scripts start",
+    "build": "pnpm run build:prod",
+    "build:prod": "node ./tools/index.js && react-scripts build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -15,16 +15,8 @@
     "@types/node": "^16.18.38",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
-    "autoprefixer": "10.4.14",
-    "babel-plugin-macros": "^3.1.0",
-    "eslint": "8.44.0",
-    "eslint-config-next": "13.4.9",
     "flowbite": "^1.7.0",
     "i18next": "^23.2.8",
-    "postcss": "8.4.25",
-    "postcss-import": "^15.1.0",
-    "postcss-nested": "^6.0.1",
-    "postcss-nesting": "^12.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.0.2",
@@ -32,8 +24,19 @@
     "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
     "tailwindcss": "^3.3.2",
-    "typescript": "5.1.6",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.14",
+    "babel-plugin-macros": "^3.1.0",
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.9",
+    "minify-xml": "^3.4.0",
+    "postcss": "8.4.25",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "postcss-nesting": "^12.0.0",
+    "typescript": "5.1.6"
   },
   "eslintConfig": {
     "extends": [
