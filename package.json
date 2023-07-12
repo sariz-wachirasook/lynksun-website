@@ -3,10 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm run dev:local",
-    "dev:local": "node ./tools/index.js && react-scripts start",
-    "build": "pnpm run build:prod",
-    "build:prod": "node ./tools/index.js && react-scripts build"
+    "dev": "node ./tools/index.js && react-scripts start",
+    "build": "node ./tools/index.js && react-scripts build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
