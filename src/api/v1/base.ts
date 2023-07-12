@@ -3,9 +3,11 @@ import axios, { AxiosRequestConfig } from 'axios';
 class BaseApi {
   public static instance: BaseApi;
   public API_BASE_URL: string;
+  public TOKEN: string;
 
   constructor() {
     this.API_BASE_URL = '/api/v1';
+    this.TOKEN = '';
   }
 
   public static getInstance(): BaseApi {

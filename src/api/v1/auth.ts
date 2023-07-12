@@ -17,6 +17,10 @@ class Auth extends BaseApi {
   public register<T>(params?: any): Promise<T> {
     return this.post<T>('/auth/register', params);
   }
+
+  public refreshToken<T>(params?: any): Promise<T> {
+    return this.post<T>('/auth/refresh-token', params);
+  }
 }
 
 export default Auth;
