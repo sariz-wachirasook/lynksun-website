@@ -43,7 +43,7 @@ const LanguageSwitcher: FC = () => {
                 onClick={() => changeLanguage(language)}
                 className="flex items-center justify-between w-full"
               >
-                <span>{t(`languages.${language}`)}</span>
+                <span>{t(`${language}`)}</span>
                 {language === i18n.language && (
                   <FontAwesomeIcon icon={icon({ name: 'check', style: 'solid' })} />
                 )}
