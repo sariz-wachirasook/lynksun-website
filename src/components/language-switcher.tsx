@@ -1,7 +1,5 @@
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const LanguageSwitcher: FC = () => {
   const { t, i18n } = useTranslation();
@@ -20,8 +18,7 @@ const LanguageSwitcher: FC = () => {
         className="btn btn--alternative"
         type="button"
       >
-        {/* <i className="fa-solid fa-earth-asia"></i> */}
-        <FontAwesomeIcon icon={icon({ name: 'globe-asia', style: 'solid' })} />
+        <i className="fa-solid fa-globe-asia" />
       </button>
       <div
         id="dropdownHover"
@@ -44,9 +41,7 @@ const LanguageSwitcher: FC = () => {
                 className="flex items-center justify-between w-full"
               >
                 <span>{t(`${language}`)}</span>
-                {language === i18n.language && (
-                  <FontAwesomeIcon icon={icon({ name: 'check', style: 'solid' })} />
-                )}
+                {language === i18n.language && <i className="fa-solid fa-check" />}
               </button>
             </li>
           ))}

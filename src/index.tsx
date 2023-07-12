@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom/client';
 import './i18n';
 import './assets/css/app.css';
 import './assets/css/tailwind.css';
-import 'flowbite/dist/flowbite.min.js';
+import '@fortawesome/fontawesome-free/css/fontawesome.css';
+import '@fortawesome/fontawesome-free/css/solid.css';
 
 import reportWebVitals from './reportWebVitals';
 import Router from './router';

@@ -1,7 +1,5 @@
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const Aside: FC = () => {
   const { t } = useTranslation();
@@ -10,12 +8,12 @@ const Aside: FC = () => {
     {
       name: t('dashboard'),
       path: '/app',
-      icon: icon({ name: 'chart-pie', style: 'solid' }),
+      icon: 'chart-pie',
     },
     {
       name: t('links'),
       path: '/app/links',
-      icon: icon({ name: 'link', style: 'solid' }),
+      icon: 'link',
     },
   ];
 
@@ -23,12 +21,12 @@ const Aside: FC = () => {
     {
       name: t('profile'),
       path: '/app/profile',
-      icon: icon({ name: 'user', style: 'solid' }),
+      icon: 'user',
     },
     {
       name: t('settings'),
       path: '/app/settings',
-      icon: icon({ name: 'cog', style: 'solid' }),
+      icon: 'cog',
     },
   ];
 
@@ -42,7 +40,7 @@ const Aside: FC = () => {
         className="btn btn--alternative fixed -left-3 bottom-5 "
       >
         <span className="sr-only">Open sidebar</span>
-        <FontAwesomeIcon icon={icon({ name: 'bars', style: 'solid' })} />
+        <i className={`fa-solid fa-bars`} />
       </button>
 
       <aside
@@ -63,7 +61,7 @@ const Aside: FC = () => {
                   href={route.path}
                   className="flex items-center p-2 h6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
-                  <FontAwesomeIcon icon={route.icon} />
+                  <i className={`fa-solid fa-${route.icon}`} />
                   <span className="ml-3">{route.name}</span>
                 </a>
               </li>
@@ -77,7 +75,7 @@ const Aside: FC = () => {
                   href={route.path}
                   className="flex items-center h6 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
-                  <FontAwesomeIcon icon={route.icon} />
+                  <i className={`fa-solid fa-${route.icon}`} />
                   <span className="ml-3">{route.name}</span>
                 </a>
               </li>
