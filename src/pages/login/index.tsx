@@ -8,8 +8,6 @@ import Auth from '../../api/auth';
 const Login: FC = () => {
   const { t } = useTranslation();
 
-  console.log(process.env);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const AuthService = new Auth();

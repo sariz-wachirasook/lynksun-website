@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React from 'react';
 
+// NOTE: performance optimization
 const HonePage = React.lazy(() => import('./pages/index'));
 const Error404 = React.lazy(() => import('./pages/404'));
 const IndexSlug = React.lazy(() => import('./pages/[slug]'));
