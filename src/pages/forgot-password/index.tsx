@@ -1,10 +1,41 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import DefaultLayout from '../../layouts/default';
 import Button from '../../components/button';
 import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
+import Card from '../../components/card';
 
 const ForgotPassword: FC = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email');
+    setTimeout(() => {
+      // TODO:
+      setLoading(false);
+      setEmail(email as string);
+      setIsSubmitted(true);
+    }, 1000);
+  };
+
+  const handleResend = () => {
+    setLoading(true);
+    setIsSubmitted(false);
+
+    setTimeout(() => {
+      // TODO:
+      setLoading(false);
+      setIsSubmitted(true);
+    }, 1000);
+  };
+
   const { t } = useTranslation();
   return (
     <DefaultLayout>
@@ -16,25 +47,55 @@ const ForgotPassword: FC = () => {
           >
             {t('lynksun')}
           </a>
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                {t('forgot-password')}
-              </h1>
-              <form action="#">
-                <Text
-                  type="email"
-                  name="email"
-                  placeholder={t('name-company.com')}
-                  label={t('email')}
-                  required
-                  autoComplete="email"
-                />
 
-                <Button type="submit" className="w-full mb-2.5" label={t('send-email')} />
-              </form>
-            </div>
-          </div>
+          {/* before submit */}
+          {!isSubmitted && (
+            <Card className="w-full max-w-md p-5 mb-5">
+              {loading && (
+                <div className="flex items-center justify-center">
+                  <div className="w-6 h-6 mr-3 border-2 border-t-2 border-gray-900 rounded-full animate-spin"></div>
+                  <span>{t('loading')}</span>
+                </div>
+              )}
+
+              {!loading && (
+                <>
+                  <h1 className="mb-4">{t('forgot-password')}</h1>
+                  <form onSubmit={handleSubmit}>
+                    <Text
+                      type="email"
+                      name="email"
+                      placeholder={t('name-company.com')}
+                      label={t('email')}
+                      required
+                      autoComplete="email"
+                      className="!mb-10"
+                    />
+
+                    <Button type="submit" className="w-full mb-2.5" label={t('send-email')} />
+                  </form>
+                </>
+              )}
+            </Card>
+          )}
+
+          {/* after submit */}
+          {isSubmitted && (
+            <Card className="w-full max-w-md p-5 mb-5">
+              <h1 className="mb-4">{t('forgot-password')}</h1>
+              <p className="mb-2.5">
+                {t('we-sent-email-to')} <b>{email}</b>
+              </p>
+              <p className="mb-2.5">{t('please-check-your-email-to-reset-password')}</p>
+              <p className="mb-2.5">{t('if-you-did-not-receive-email')}</p>
+              <Button
+                type="submit"
+                className="w-full mb-2.5"
+                label={t('resend-email')}
+                onClick={handleResend}
+              />
+            </Card>
+          )}
         </div>
       </section>
     </DefaultLayout>

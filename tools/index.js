@@ -3,7 +3,7 @@ const sitemap = require('./sitemap');
 const robot = require('./robot');
 require('dotenv').config();
 
-const hostname = process.env.HOSTNAME || 'http://localhost:3000';
+const hostname = process.env.HOST_NAME || 'http://localhost:3000';
 
 postcss.init();
 sitemap.init(hostname);
