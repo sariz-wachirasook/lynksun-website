@@ -2,7 +2,7 @@ import { type FC } from 'react';
 
 import Layout from '../layouts/default';
 
-const PageNotFound: FC = () => {
+const Error404Page: FC = () => {
   return (
     <Layout>
       <div className="text-center mb-5 pt-[30vh]">
@@ -13,4 +13,4 @@ const PageNotFound: FC = () => {
   );
 };
 
-export default PageNotFound;
+export default Error404Page;

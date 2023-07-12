@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import LanguageSwitcher from './language-switcher';
+import LanguageSwitcher from '../language-switcher';
 import { useTranslation } from 'react-i18next';
 
 interface Route {

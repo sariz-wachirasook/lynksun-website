@@ -4,8 +4,9 @@ import Button from '../../components/button';
 import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
 import Auth from '../../api/v1/auth';
+import { setCookie } from '../../utils/cookie';
 
-const Login: FC = () => {
+const LoginPage: FC = () => {
   const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,6 +18,10 @@ const Login: FC = () => {
         email: '',
         password: '',
       });
+
+      setCookie({ name: 'token', value: request.token, expires: 1 });
+      setCookie({ name: 'refresh_token', value: request.refresh_token, expires: 1 });
+      window.location.href = '/app';
     } catch (error) {
       alert(error);
     }
@@ -100,4 +105,4 @@ const Login: FC = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

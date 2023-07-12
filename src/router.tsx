@@ -3,14 +3,19 @@ import React from 'react';
 
 // NOTE: performance optimization
 const HonePage = React.lazy(() => import('./pages/index'));
-const Error404 = React.lazy(() => import('./pages/404'));
-const IndexSlug = React.lazy(() => import('./pages/[slug]'));
-const Login = React.lazy(() => import('./pages/login/index'));
-const Register = React.lazy(() => import('./pages/register/index'));
-const ResetPassword = React.lazy(() => import('./pages/reset-password/[token]'));
-const ForgotPassword = React.lazy(() => import('./pages/forgot-password'));
+const Error404Page = React.lazy(() => import('./pages/404'));
+const SlugPage = React.lazy(() => import('./pages/[slug]'));
+const LoginPage = React.lazy(() => import('./pages/login/index'));
+const RegisterPage = React.lazy(() => import('./pages/register/index'));
+const ResetPasswordPage = React.lazy(() => import('./pages/reset-password/[token]'));
+const ForgotPasswordPage = React.lazy(() => import('./pages/forgot-password'));
+const AppPage = React.lazy(() => import('./pages/app/index'));
+const AppLinksPage = React.lazy(() => import('./pages/app/links/index'));
+const AppProfilePage = React.lazy(() => import('./pages/app/profile/index'));
+const AppSettingsPage = React.lazy(() => import('./pages/app/settings/index'));
 
 const router = createBrowserRouter([
+  // top level routes
   {
     path: '/',
     element: <HonePage />,
@@ -20,28 +25,48 @@ const router = createBrowserRouter([
     element: <HonePage />,
   },
   {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/register',
-    element: <Register />,
-  },
-  {
-    path: '/forgot-password',
-    element: <ForgotPassword />,
-  },
-  {
-    path: '/reset-password/:token',
-    element: <ResetPassword />,
-  },
-  {
     path: '/:shortUrl',
-    element: <IndexSlug />,
+    element: <SlugPage />,
   },
   {
     path: '*',
-    element: <Error404 />,
+    element: <Error404Page />,
+  },
+
+  // auth routes
+  {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
+  },
+  {
+    path: '/forgot-password',
+    element: <ForgotPasswordPage />,
+  },
+  {
+    path: '/reset-password/:token',
+    element: <ResetPasswordPage />,
+  },
+
+  // app routes
+  {
+    path: '/app',
+    element: <AppPage />,
+  },
+  {
+    path: '/app/links',
+    element: <AppLinksPage />,
+  },
+  {
+    path: '/app/profile',
+    element: <AppProfilePage />,
+  },
+  {
+    path: '/app/settings',
+    element: <AppSettingsPage />,
   },
 ]);
 

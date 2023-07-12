@@ -1,11 +1,11 @@
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+import Navbar from '../components/layouts/navbar';
+import Footer from '../components/layouts/footer';
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Default = ({ children }: Props) => {
+const DefaultLayout = ({ children }: Props) => {
   return (
     <>
       {/* header */}
@@ -20,4 +20,4 @@ const Default = ({ children }: Props) => {
   );
 };
 
-export default Default;
+export default DefaultLayout;

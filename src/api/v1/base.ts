@@ -33,7 +33,6 @@ class BaseApi {
     return this.request<T>(path, 'DELETE', params);
   }
 
-  // return axios(options).then((response) => response.data); or send toast error
   private request<T>(path: string, method: string, params?: any): Promise<T> {
     const url = `${this.API_BASE_URL}${path}`;
     const options: AxiosRequestConfig = {

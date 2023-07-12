@@ -5,7 +5,7 @@ import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
 import Card from '../../components/card';
 
-const ForgotPassword: FC = () => {
+const ForgotPasswordPage: FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -102,4 +102,4 @@ const ForgotPassword: FC = () => {
   );
 };
 
-export default ForgotPassword;
+export default ForgotPasswordPage;

@@ -3,9 +3,28 @@ import DefaultLayout from '../../layouts/default';
 import Button from '../../components/button';
 import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
+import Auth from '../../api/v1/auth';
 
 const Register: FC = () => {
   const { t } = useTranslation();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const AuthService = new Auth();
+
+    try {
+      await AuthService.register({
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+
+      window.location.href = '/login';
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <DefaultLayout>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -21,7 +40,7 @@ const Register: FC = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 {t('create-an-account')}
               </h1>
-              <form action="#">
+              <form onSubmit={handleSubmit}>
                 <Text
                   type="email"
                   name="email"
