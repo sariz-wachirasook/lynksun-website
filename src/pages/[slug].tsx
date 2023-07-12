@@ -1,7 +1,9 @@
 import { type FC } from 'react';
 
 const Slug: FC = () => {
-  window.location.href = 'https://google.com';
+  const slug = window.location.pathname.replace('/', '');
+  const hostname = window.location.origin;
+  window.location.href = `${hostname}/api/v1/links/open/${slug}`;
   return <></>;
 };
 

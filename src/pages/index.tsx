@@ -4,40 +4,54 @@ import Input from '../components/input/input';
 import Button from '../components/button';
 import Card from '../components/card';
 import { useTranslation } from 'react-i18next';
+import LinkService from '../api/v1/link';
+import { formatDateTime } from '../utils/date';
+import Badge from '../components/badge';
 
 interface Link {
+  id?: number;
   url: string;
-  shortUrl: string;
-  expiresAt: string;
+  short_url?: string;
+  expires_at?: string;
+  updated_at?: string;
+  created_at?: string;
 }
 
 const Page: FC = () => {
   const [loading, setLoading] = useState(false);
-  const [link, seta] = useState<Link>({
+  const [link, setLink] = useState<Link>({
+    id: 0,
     url: '',
-    shortUrl: '',
-    expiresAt: '',
+    short_url: '',
+    expires_at: '',
+    updated_at: '',
+    created_at: '',
   });
   const { t } = useTranslation();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-
+    const linkService = new LinkService();
     setLoading(true);
-    setTimeout(() => {
-      seta({
-        url: 'https://google.com',
-        shortUrl: 'https://lynksun.com/abc123',
-        expiresAt: '2021-10-10 10:10:10',
+
+    try {
+      const response = await linkService.create({
+        url: formData.get('url') as string,
       });
-      setLoading(false);
-    }, 1000);
+
+      setLink(response);
+    } catch (error: any) {
+      alert(error.message);
+    }
+
+    setLoading(false);
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(link.shortUrl);
+    const hostname = window.location.origin;
+    navigator.clipboard.writeText(`${hostname}/${link.short_url}`);
   };
 
   return (
@@ -95,14 +109,19 @@ const Page: FC = () => {
             </div>
           </Card>
         )}
-        {link.shortUrl && !loading && (
+        {link.short_url && !loading && (
           <Card className="mx-auto w-full max-w-xl p-5">
             <div className="mb-4">
               <h3 className="mb-4">{t('your-link-is-ready')}</h3>
-              <div className="grid grid-cols-[1fr,auto] gap-4">
-                <Input name="url" className="mb-0" required value={link.shortUrl} disabled />
+              <div className="grid grid-cols-[1fr,auto] gap-4 mb-4">
+                <Input name="url" className="mb-0" required value={link.short_url} disabled />
+
                 <Button label="Copy" onClick={() => handleCopy()} />
               </div>
+              <p>
+                {t('your-link-will-be-expired-at')}
+                <Badge className='ml-2' label={formatDateTime(link.expires_at as string)} />
+              </p>
             </div>
           </Card>
         )}

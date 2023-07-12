@@ -38,5 +38,6 @@
   "we-sent-email-to": "We sent email to",
   "please-check-your-email-to-reset-password": "Please check your email to reset password",
   "if-you-did-not-receive-email": "If you did not receive email",
-  "resend-email": "Resend email"
+  "resend-email": "Resend email",
+  "your-link-will-be-expired-at": "Your link will be expired at"
 }
