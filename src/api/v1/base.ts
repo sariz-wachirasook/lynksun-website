@@ -41,14 +41,23 @@ class BaseApi {
       baseURL: this.API_BASE_URL,
       method,
       url,
-      data: params,
     };
+
+    if (method === 'GET') {
+      options.params = params;
+    }
+
+    if (method === 'POST' || method === 'PUT') {
+      options.data = params;
+    }
 
     if (this.TOKEN) {
       options.headers = {
         Authorization: `Bearer ${this.TOKEN}`,
       };
     }
+
+    console.log('options', options);
 
     return axios(options).then((response) => response.data);
   }

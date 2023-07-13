@@ -3,11 +3,16 @@ import BaseApi from './base';
 import { LinkType, LinkParamsType, LinksType } from '../../interfaces/link';
 import { DeleteResponseType } from '../../interfaces/response';
 
+interface LinkQueryParamsType {
+  search?: string;
+}
+
 class LinkService extends BaseApi {
   public static instance: LinkService;
 
-  public getAll(): Promise<LinksType> {
-    return this.get('/links');
+  // ---------- CRUD ---------- //
+  public getAll(params?: LinkQueryParamsType): Promise<LinksType> {
+    return this.get('/links', params);
   }
 
   public getOne(id: any): Promise<LinkType> {
@@ -24,6 +29,11 @@ class LinkService extends BaseApi {
 
   public delete(id: any): Promise<DeleteResponseType> {
     return this.delete(`/links/${id}`);
+  }
+
+  // ---------- Other ---------- //
+  public visits(id: any): Promise<any> {
+    return this.get(`/links/${id}/visits`);
   }
 }
 

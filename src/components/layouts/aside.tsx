@@ -28,7 +28,16 @@ const Aside: FC = () => {
       path: '/app/settings',
       icon: 'cog',
     },
+    {
+      name: t('logout'),
+      path: '/logout',
+      icon: 'right-from-bracket',
+    },
   ];
+
+  const currentPath = window.location.pathname;
+
+  console.log(currentPath);
 
   return (
     <>
@@ -59,7 +68,9 @@ const Aside: FC = () => {
               <li key={route.path}>
                 <a
                   href={route.path}
-                  className="flex items-center p-2 h6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className={`flex items-center p-2 h5 font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
+                    route.path === currentPath ? 'bg-gray-100 dark:bg-gray-700' : ''
+                  }`}
                 >
                   <i className={`fa-solid fa-${route.icon}`} />
                   <span className="ml-3">{route.name}</span>
@@ -73,7 +84,9 @@ const Aside: FC = () => {
               <li key={route.path}>
                 <a
                   href={route.path}
-                  className="flex items-center h6 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className={`flex items-center h5 font-normal p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
+                    route.path === currentPath ? 'bg-gray-100 dark:bg-gray-700' : ''
+                  }`}
                 >
                   <i className={`fa-solid fa-${route.icon}`} />
                   <span className="ml-3">{route.name}</span>

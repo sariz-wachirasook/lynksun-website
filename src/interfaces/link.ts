@@ -17,4 +17,5 @@ export interface LinkType {
 
 export interface LinkParamsType {
   url: string;
+  name?: string | null;
 }

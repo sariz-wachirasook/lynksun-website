@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-const Label: FC<Props> = ({ label, required, className, name }) => {
+const Label: FC<Props> = ({ label, required, className = '', name }) => {
   return (
     <label htmlFor={name} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
       {label} {required && <span className="text-red-500">*</span>}

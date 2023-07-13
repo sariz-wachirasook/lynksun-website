@@ -12,12 +12,12 @@ const Navbar: FC = () => {
   const { t } = useTranslation();
   const routes: Route[] = [
     {
-      name: t('home'),
-      path: '/',
-    },
-    {
       name: t('login'),
       path: '/login',
+    },
+    {
+      name: t('register'),
+      path: '/register',
     },
   ];
 

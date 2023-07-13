@@ -1,10 +1,13 @@
-import { type FC } from 'react';
+import { useState, type FC, useEffect } from 'react';
+import { LinkType } from '../interfaces/link';
+import LinkService from '../api/v1/link';
 
-const Slug: FC = () => {
+const SlugPage: FC = () => {
   const slug = window.location.pathname.replace('/', '');
-  const hostname = window.location.origin;
-  window.location.href = `${hostname}/api/v1/links/open/${slug}`;
+  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  window.location.href = `${VITE_API_BASE_URL}/api/v1/links/open/${slug}`;
+
   return <></>;
 };
 
-export default Slug;
+export default SlugPage;

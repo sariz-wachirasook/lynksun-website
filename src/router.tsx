@@ -13,6 +13,7 @@ const AppPage = React.lazy(() => import('./pages/app/index'));
 const AppLinksPage = React.lazy(() => import('./pages/app/links/index'));
 const AppProfilePage = React.lazy(() => import('./pages/app/profile/index'));
 const AppSettingsPage = React.lazy(() => import('./pages/app/settings/index'));
+const LogoutPage = React.lazy(() => import('./pages/logout/index'));
 
 const router = createBrowserRouter([
   // top level routes
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: '/reset-password/:token',
     element: <ResetPasswordPage />,
+  },
+  {
+    path: '/logout',
+    element: <LogoutPage />,
   },
 
   // app routes

@@ -46,5 +46,18 @@
   "original-url": "Original URL",
   "total-visits": "Total visits",
   "download-qr-code": "Download QR Code",
-  "update-url": "Update URL"
+  "update-url": "Update URL",
+  "visits": "Visits",
+  "short-url": "Short URL",
+  "last-7-days": "Last 7 days",
+  "created-at": "Created at",
+  "expires-at": "Expires at",
+  "updated-at": "Updated at",
+  "create-new-link": "Create new link",
+  "enter-the-url-you-want-to-shorten": "Enter the URL you want to shorten",
+  "enter-the-url": "Enter the URL",
+  "search": "Search",
+  "copy": "Copy",
+  "url": "URL",
+  "register": "Register"
 }

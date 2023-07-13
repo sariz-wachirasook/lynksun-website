@@ -10,11 +10,13 @@ interface Props {
   className?: string;
   type?: 'text' | 'email' | 'password';
   maxLength?: number;
+  defaultValue?: string;
   value?: string;
   disabled?: boolean;
   autoComplete?: string;
   pattern?: string;
   readOnly?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Text: FC<Props> = ({
@@ -24,12 +26,14 @@ const Text: FC<Props> = ({
   required = false,
   type = 'text',
   maxLength = 255,
+  defaultValue,
   value,
   disabled = false,
   className = '',
   autoComplete,
   pattern,
   readOnly = false,
+  onChange,
 }) => {
   return (
     <div className={`${label ? 'mb-4' : ''} ${className}`}>
@@ -44,10 +48,12 @@ const Text: FC<Props> = ({
         maxLength={maxLength}
         {...(pattern && { pattern })}
         {...(autoComplete && { autoComplete })}
-        value={value}
+        {...(defaultValue && { defaultValue })}
         disabled={disabled}
         {...(disabled && { readOnly: true })}
         {...(readOnly && !disabled && { readOnly: true })}
+        {...(value && { value })}
+        onChange={onChange}
       />
     </div>
   );
