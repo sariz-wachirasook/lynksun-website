@@ -10,6 +10,7 @@ import Button from '../../../components/button';
 import { QRCodeCanvas } from 'qrcode.react';
 import VerticalBar from '../../../components/chart/vertical-bar';
 import SearchInput from '../../../components/input/search';
+import { formatDateTime } from '../../../utils/date';
 
 const AppLinksPage: FC = () => {
   const [links, setLinks] = useState<LinksType>();
@@ -153,7 +154,7 @@ const AppLinksPage: FC = () => {
               <li className="min-w-0" key={linkDetail.id}>
                 <Card
                   className={`cursor-pointer ${
-                    linkDetail.id === link?.id ? 'bg-blue-100 dark:bg-blue-900' : ''
+                    linkDetail.id === link?.id ? 'bg-blue-200 dark:bg-blue-800' : ''
                   }`}
                   onClick={() => handleClickSingleLink(linkDetail.id)}
                 >
@@ -161,8 +162,13 @@ const AppLinksPage: FC = () => {
                     <h5 className="mb-2.5 overflow-hidden truncate text-ellipsis block">
                       {linkDetail.name ? linkDetail.name : `${hostname}/${linkDetail.short_url}`}
                     </h5>
-                    <p>
-                      {t('url')}: {linkDetail.short_url}
+                    <p className="flex flex-nowrap gap-2 items-center">
+                      {t('url')}:
+                      <Badge className="overflow-hidden truncate text-ellipsis block">
+                        <a
+                          href={`${hostname}/${linkDetail.short_url}`}
+                        >{`${hostname}/${linkDetail.short_url}`}</a>
+                      </Badge>
                     </p>
                     <p>
                       {t('total-visits')}: {linkDetail.visit_count}
@@ -202,7 +208,7 @@ const AppLinksPage: FC = () => {
                         label={t('download-qr-code')}
                         onClick={handleDownloadQRCode}
                       />
-                      <p className='mx-auto'>
+                      <p className="mx-auto">
                         {t('total-visits')}: {link.visit_count}
                       </p>
                     </Card>
@@ -240,11 +246,11 @@ const AppLinksPage: FC = () => {
                     <hr className="my-4" />
 
                     <small>
-                      {t('created-at')}: {link.created_at}
+                      {t('created-at')}: {formatDateTime(link.created_at as string)}
                     </small>
                     <br />
                     <small>
-                      {t('updated-at')}: {link.updated_at}
+                      {t('updated-at')}: {formatDateTime(link.updated_at as string)}
                     </small>
                   </div>
                 </div>
