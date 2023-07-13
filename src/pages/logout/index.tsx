@@ -3,7 +3,8 @@ import { deleteCookie } from '../../utils/cookie';
 
 const LogoutPage: FC = () => {
   deleteCookie('token');
-  deleteCookie('refresh_token');
+  // TODO: integrate refresh token
+  // deleteCookie('refresh_token');
 
   window.location.href = '/';
   return <></>;

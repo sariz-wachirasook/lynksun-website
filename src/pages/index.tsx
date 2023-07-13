@@ -9,8 +9,10 @@ import { formatDateTime } from '../utils/date';
 import Badge from '../components/badge';
 import { LinkType } from '../interfaces/link';
 import 'flowbite';
+import { toast } from 'react-toastify';
 
 const Page: FC = () => {
+  // state
   const [loading, setLoading] = useState(false);
   const [link, setLink] = useState<LinkType>({
     id: 0,
@@ -20,8 +22,12 @@ const Page: FC = () => {
     updated_at: '',
     created_at: '',
   });
-  const { t } = useTranslation();
 
+  // -------------------- //
+  const { t } = useTranslation();
+  const notifyError = () => toast.error(t('something-went-wrong'));
+
+  // function
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -36,7 +42,7 @@ const Page: FC = () => {
 
       setLink(response);
     } catch (error: any) {
-      alert(error.message);
+      notifyError();
     }
 
     setLoading(false);
@@ -47,6 +53,7 @@ const Page: FC = () => {
     navigator.clipboard.writeText(`${hostname}/${link.short_url}`);
   };
 
+  // render
   return (
     <DefaultLayout>
       {/* header */}
@@ -119,8 +126,6 @@ const Page: FC = () => {
           </Card>
         )}
       </section>
-
-      <section></section>
     </DefaultLayout>
   );
 };

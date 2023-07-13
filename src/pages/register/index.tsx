@@ -23,10 +23,11 @@ const Register: FC = () => {
       });
 
       setCookie({ name: 'token', value: response.token, expires: 1 });
-      setCookie({ name: 'refresh_token', value: response.refresh_token, expires: 1 });
+
+      // TODO: integrate refresh token
+      // setCookie({ name: 'refresh_token', value: response.refresh_token, expires: 1 });
       window.location.href = '/app';
     } catch (error) {
-      alert(error);
     }
   };
 

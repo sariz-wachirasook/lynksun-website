@@ -12,9 +12,26 @@ class AuthService extends BaseApi {
     return this.post('/auth/register', params);
   }
 
-  public refreshToken(): Promise<LoginResponseType> {
-    return this.post('/auth/refresh-token');
+  public getMe(): Promise<any> {
+    return this.get('/auth/me');
   }
+
+  public updateMe(params: any): Promise<any> {
+    return this.put('/auth/me', params);
+  }
+
+  public updatePassword(params: any): Promise<any> {
+    return this.put('/auth/update-password', params);
+  }
+
+  public deleteMe(): Promise<any> {
+    return this.delete('/auth/me');
+  }
+
+  // TODO: add refresh token
+  // public refreshToken(): Promise<LoginResponseType> {
+  //   return this.post('/auth/refresh-token');
+  // }
 }
 
 export default AuthService;

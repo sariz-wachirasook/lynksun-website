@@ -1,9 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { getCookie } from '../../utils/cookie';
+import { deleteCookie, getCookie } from '../../utils/cookie';
 import { DeleteResponseType } from '../../interfaces/response';
+import { toast } from 'react-toastify';
+import { t } from 'i18next';
 
-class BaseApi {
-  public static instance: BaseApi;
+class BaseService {
+  public static instance: BaseService;
   private API_BASE_URL: string;
   private TOKEN: string;
   private ACCEPT: string;
@@ -14,11 +16,11 @@ class BaseApi {
     this.ACCEPT = 'application/json';
   }
 
-  public static getInstance(): BaseApi {
-    if (!BaseApi.instance) {
-      BaseApi.instance = new BaseApi();
+  public static getInstance(): BaseService {
+    if (!BaseService.instance) {
+      BaseService.instance = new BaseService();
     }
-    return BaseApi.instance;
+    return BaseService.instance;
   }
 
   public get<T>(path: string, params?: any): Promise<T> {
@@ -38,14 +40,28 @@ class BaseApi {
   }
 
   private async request<T>(path: string, method: string, params?: any): Promise<T> {
-    const url = `${path}`;
-    const options: AxiosRequestConfig = {
+    const apiOptions = {
       baseURL: this.API_BASE_URL,
-      method,
-      url,
+      timeout: 1000,
       headers: {
         Accept: this.ACCEPT,
       },
+    };
+
+    if (this.TOKEN) {
+      apiOptions.headers = {
+        ...apiOptions.headers,
+        Authorization: `Bearer ${this.TOKEN}`,
+      };
+    }
+
+    const api = axios.create(apiOptions);
+
+    const url = `${path}`;
+
+    const options: AxiosRequestConfig = {
+      method,
+      url,
     };
 
     if (method === 'GET') {
@@ -56,17 +72,36 @@ class BaseApi {
       options.data = params;
     }
 
-    if (this.TOKEN) {
-      options.headers = {
-        ...options.headers,
-        Authorization: `Bearer ${this.TOKEN}`,
-      };
-    }
+    api.interceptors.response.use(
+      (response) => {
+        console.log(response);
+        switch (response.config.method) {
+          case 'post':
+            toast.success(t('create-success'));
+            break;
+          case 'put':
+            toast.success(t('update-success'));
+            break;
+          case 'delete':
+            toast.success(t('delete-success'));
+            break;
+          default:
+            break;
+        }
 
-    console.log('options', options);
+        return response && response.data;
+      },
+      (error) => {
+        if (error.response && error.response.data) {
+          toast.error(error.response.data?.message || t('something-went-wrong'));
+        }
 
-    return axios(options).then((response) => response.data);
+        throw error;
+      },
+    );
+
+    return api(options);
   }
 }
 
-export default BaseApi;
+export default BaseService;

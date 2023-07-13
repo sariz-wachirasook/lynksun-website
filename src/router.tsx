@@ -1,5 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
+import authMiddleWare from './middleware/auth';
+import { useSelector } from 'react-redux';
+import { getCookie } from './utils/cookie';
+import AuthService from './api/v1/auth';
 
 // NOTE: performance optimization
 const HonePage = React.lazy(() => import('./pages/index'));
@@ -15,67 +19,105 @@ const AppProfilePage = React.lazy(() => import('./pages/app/profile/index'));
 const AppSettingsPage = React.lazy(() => import('./pages/app/settings/index'));
 const LogoutPage = React.lazy(() => import('./pages/logout/index'));
 
-const router = createBrowserRouter([
-  // top level routes
-  {
-    path: '/',
-    element: <HonePage />,
-  },
-  {
-    path: '/about',
-    element: <HonePage />,
-  },
-  {
-    path: '/:shortUrl',
-    element: <SlugPage />,
-  },
-  {
-    path: '*',
-    element: <Error404Page />,
-  },
-
-  // auth routes
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '/register',
-    element: <RegisterPage />,
-  },
-  {
-    path: '/forgot-password',
-    element: <ForgotPasswordPage />,
-  },
-  {
-    path: '/reset-password/:token',
-    element: <ResetPasswordPage />,
-  },
-  {
-    path: '/logout',
-    element: <LogoutPage />,
-  },
-
-  // app routes
-  {
-    path: '/app',
-    element: <AppPage />,
-  },
-  {
-    path: '/app/links',
-    element: <AppLinksPage />,
-  },
-  {
-    path: '/app/profile',
-    element: <AppProfilePage />,
-  },
-  {
-    path: '/app/settings',
-    element: <AppSettingsPage />,
-  },
-]);
-
 const Router = () => {
+  const token = getCookie('token');
+
+  const router = createBrowserRouter([
+    // top level routes
+    {
+      path: '/',
+      element: (
+        <Suspense>
+          <HonePage />
+        </Suspense>
+      ),
+    },
+    {
+      path: '/about',
+      element: (
+        <Suspense>
+          <HonePage />
+        </Suspense>
+      ),
+    },
+    {
+      path: '/:shortUrl',
+      element: (
+        <Suspense>
+          <SlugPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: '*',
+      element: (
+        <Suspense>
+          <Error404Page />
+        </Suspense>
+      ),
+    },
+
+    // auth routes
+    {
+      path: '/login',
+      element: (
+        <Suspense>
+          <LoginPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: '/register',
+      element: (
+        <Suspense>
+          <RegisterPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: '/forgot-password',
+      element: (
+        <Suspense>
+          <ForgotPasswordPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: '/reset-password/:token',
+      element: (
+        <Suspense>
+          <ResetPasswordPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: '/logout',
+      element: (
+        <Suspense>
+          <LogoutPage />
+        </Suspense>
+      ),
+    },
+
+    // app routes
+    {
+      path: '/app',
+      element: <Suspense>{token ? <AppPage /> : <LoginPage />}</Suspense>,
+    },
+    {
+      path: '/app/links',
+      element: <Suspense>{token ? <AppLinksPage /> : <LoginPage />}</Suspense>,
+    },
+    {
+      path: '/app/profile',
+      element: <Suspense>{token ? <AppProfilePage /> : <LoginPage />}</Suspense>,
+    },
+    {
+      path: '/app/settings',
+      element: <Suspense>{token ? <AppSettingsPage /> : <LoginPage />}</Suspense>,
+    },
+  ]);
+
   return <RouterProvider router={router} />;
 };
 

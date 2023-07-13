@@ -11,5 +11,7 @@ export interface LoginParamsType {
 
 export interface LoginResponseType {
   token: string;
-  refresh_token: string;
+
+  // TODO: add refresh token
+  // refresh_token: string;
 }

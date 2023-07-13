@@ -59,5 +59,16 @@
   "search": "Search",
   "copy": "Copy",
   "url": "URL",
-  "register": "Register"
+  "register": "Register",
+  "change-password": "Change password",
+  "change-name": "Change name",
+  "delete-account": "Delete account",
+  "old-password": "Old password",
+  "howdy": "Howdy",
+  "most-visited-links": "Most visited links",
+  "something-went-wrong": "Something went wrong",
+  "network-error": "Network error",
+  "request-timeout": "Request timeout",
+  "unauthorized": "Unauthorized",
+  "update-success": "Update success"
 }

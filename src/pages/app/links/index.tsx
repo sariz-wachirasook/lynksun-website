@@ -11,9 +11,10 @@ import { QRCodeCanvas } from 'qrcode.react';
 import VerticalBar from '../../../components/chart/vertical-bar';
 import SearchInput from '../../../components/input/search';
 import { formatDateTime } from '../../../utils/date';
+import { toast } from 'react-toastify';
 
 const AppLinksPage: FC = () => {
-  const [links, setLinks] = useState<LinksType>();
+  const [links, setLinks] = useState<LinksType | undefined>();
   const [loading, setLoading] = useState(false);
   const [link, setLink] = useState<LinkType>();
   const [visits, setVisits] = useState<any[]>([]);
@@ -28,6 +29,9 @@ const AppLinksPage: FC = () => {
     setLinks(response);
 
     if (isFetchSingle) {
+      if (response.data.length === 0) {
+        return;
+      }
       await fetchLink(response.data[0].id);
       await fetchVisits(response.data[0].id);
     }
@@ -63,9 +67,10 @@ const AppLinksPage: FC = () => {
     setLoading(false);
   };
 
-  const handleCopy = (link: LinkType) => {
-    const hostname = window.location.origin;
-    navigator.clipboard.writeText(`${hostname}/${link.short_url}`);
+  const handleCopy = (link: string) => {
+    event.preventDefault();
+    navigator.clipboard.writeText(link);
+    toast.info(t('copied'));
   };
 
   const handleSubmitCreateNewLink = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -118,12 +123,18 @@ const AppLinksPage: FC = () => {
     e.preventDefault();
 
     setLoading(true);
-    const formData = new FormData(e.currentTarget);
-    const linkService = new LinkService();
-    const response = await linkService.getAll({
-      search: formData.get('search') as string,
-    });
-    setLinks(response);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const linkService = new LinkService();
+      const response = await linkService.getAll({
+        search: formData.get('search') as string,
+      });
+      setLinks(response);
+    } catch (error) {
+      console.log(error);
+    }
+
     setLoading(false);
   };
 
@@ -144,12 +155,12 @@ const AppLinksPage: FC = () => {
       </Card>
 
       <div className="grid grid-cols-[1fr,2fr] gap-4">
-        <div>
+        <div className="px-2">
           <form className="mb-4" onSubmit={handleSearch}>
             <SearchInput placeholder={t('search')} name="search" />
           </form>
 
-          <ul className="grid gap-4 max-h-[80vh] overflow-y-scroll">
+          <ul className="grid gap-4 max-h-[80vh] overflow-y-auto">
             {links?.data.map((linkDetail) => (
               <li className="min-w-0" key={linkDetail.id}>
                 <Card
@@ -164,10 +175,14 @@ const AppLinksPage: FC = () => {
                     </h5>
                     <p className="flex flex-nowrap gap-2 items-center">
                       {t('url')}:
-                      <Badge className="overflow-hidden truncate text-ellipsis block">
-                        <a
-                          href={`${hostname}/${linkDetail.short_url}`}
-                        >{`${hostname}/${linkDetail.short_url}`}</a>
+                      <Badge
+                        className="overflow-hidden truncate text-ellipsis block cursor-pointer"
+                        onClick={() => handleCopy(`${hostname}/${linkDetail.short_url}`)}
+                      >
+                        <span>
+                          <i className="fa-solid fa-copy mr-2"></i>
+                          {`${hostname}/${linkDetail.short_url}`}
+                        </span>
                       </Badge>
                     </p>
                     <p>
@@ -175,8 +190,12 @@ const AppLinksPage: FC = () => {
                     </p>
                     <p className="flex flex-nowrap gap-2 items-center">
                       <span className="whitespace-nowrap"> {t('original-url')}:</span>
-                      <Badge className="overflow-hidden truncate text-ellipsis block">
-                        <a href={linkDetail.url}>{linkDetail.url}</a>
+                      <Badge
+                        className="overflow-hidden truncate text-ellipsis block cursor-pointer"
+                        onClick={() => handleCopy(linkDetail.url)}
+                      >
+                        <i className="fa-solid fa-copy mr-2"></i>
+                        <span>{linkDetail.url}</span>
                       </Badge>
                     </p>
                   </div>
@@ -228,7 +247,7 @@ const AppLinksPage: FC = () => {
                       <Button
                         label={t('copy')}
                         suffix={<i className="fa-solid fa-copy ml-2"></i>}
-                        onClick={() => handleCopy(link)}
+                        onClick={() => handleCopy(`${hostname}/${link.short_url}`)}
                       />
                     </div>
                     <hr className="my-4" />

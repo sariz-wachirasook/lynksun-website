@@ -4,7 +4,7 @@ import Button from '../../components/button';
 import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
 import Auth from '../../api/v1/auth';
-import { setCookie } from '../../utils/cookie';
+import { getCookie, setCookie } from '../../utils/cookie';
 
 const LoginPage: FC = () => {
   const { t } = useTranslation();
@@ -12,6 +12,7 @@ const LoginPage: FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const AuthService = new Auth();
+    const token = getCookie('token');
 
     try {
       const formData = new FormData(e.currentTarget);
@@ -22,11 +23,13 @@ const LoginPage: FC = () => {
       });
 
       setCookie({ name: 'token', value: request.token, expires: 1 });
-      setCookie({ name: 'refresh_token', value: request.refresh_token, expires: 1 });
-      window.location.href = '/app';
-    } catch (error) {
-      alert(error);
-    }
+
+      if (window.location.pathname === '/login') {
+        window.location.href = '/app';
+      } else {
+        window.location.href = window.location.href;
+      }
+    } catch (error) {}
   };
 
   return (
@@ -63,7 +66,8 @@ const LoginPage: FC = () => {
                   autoComplete="current-password"
                 />
 
-                <div className="flex items-center justify-between mb-10">
+                {/* TODO: remember me */}
+                {/* <div className="flex items-center justify-between mb-10">
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
                       <input
@@ -71,7 +75,6 @@ const LoginPage: FC = () => {
                         aria-describedby="remember"
                         type="checkbox"
                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        required
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -86,7 +89,7 @@ const LoginPage: FC = () => {
                   >
                     {t('forgot-password')}
                   </a>
-                </div>
+                </div> */}
                 <Button type="submit" className="w-full mb-2.5" label={t('sign-in')} />
 
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">

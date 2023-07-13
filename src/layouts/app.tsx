@@ -19,9 +19,7 @@ const AppLayout = ({ children }: Props) => {
         <Aside />
         <div className="min-w-0">
           <Navbar />
-          <main className="max-w-screen-xl mx-auto p-[1rem] min-h-[80vh] js-app-layout">
-            {children}
-          </main>
+          <main className="max-w-screen-xl mx-auto p-[1rem] min-h-[80vh]">{children}</main>
         </div>
       </div>
     </>

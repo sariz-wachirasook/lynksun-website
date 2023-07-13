@@ -19,7 +19,7 @@ const DefaultLayout = ({ children }: Props) => {
       <Navbar />
 
       {/* main */}
-      <main className="max-w-screen-xl mx-auto p-[1rem] min-h-[80vh] js-default-layout">
+      <main className="max-w-screen-xl mx-auto p-[1rem] min-h-[80vh]">
         {children}
       </main>
 
