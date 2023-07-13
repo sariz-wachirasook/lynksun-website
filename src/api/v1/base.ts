@@ -6,7 +6,7 @@ class BaseApi {
   public TOKEN: string;
 
   constructor() {
-    this.API_BASE_URL = '/api/v1';
+    this.API_BASE_URL = import.meta.env.VITE_API_BASE_URL + '/api/v1';
     this.TOKEN = '';
   }
 
@@ -33,11 +33,12 @@ class BaseApi {
     return this.request<T>(path, 'DELETE', params);
   }
 
-  private request<T>(path: string, method: string, params?: any): Promise<T> {
-    const url = `${this.API_BASE_URL}${path}`;
+  private async request<T>(path: string, method: string, params?: any): Promise<T> {
+    const url = `${path}`;
     const options: AxiosRequestConfig = {
       method,
       url,
+      baseURL: this.API_BASE_URL,
       data: params,
     };
     return axios(options).then((response) => response.data);

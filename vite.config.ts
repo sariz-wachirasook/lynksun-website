@@ -9,9 +9,9 @@ export default defineConfig({
   server: {
     port: 3000,
 
-    proxy: {
-      '/api/v1': VITE_API_BASE_URL,
-    },
+    // proxy: {
+    //   '/api/v1': VITE_API_BASE_URL,
+    // },
   },
   plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
 });
