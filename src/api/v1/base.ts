@@ -6,10 +6,12 @@ class BaseApi {
   public static instance: BaseApi;
   private API_BASE_URL: string;
   private TOKEN: string;
+  private ACCEPT: string;
 
   constructor() {
     this.API_BASE_URL = import.meta.env.VITE_API_BASE_URL + '/api/v1';
     this.TOKEN = getCookie('token');
+    this.ACCEPT = 'application/json';
   }
 
   public static getInstance(): BaseApi {
@@ -41,6 +43,9 @@ class BaseApi {
       baseURL: this.API_BASE_URL,
       method,
       url,
+      headers: {
+        Accept: this.ACCEPT,
+      },
     };
 
     if (method === 'GET') {
@@ -53,6 +58,7 @@ class BaseApi {
 
     if (this.TOKEN) {
       options.headers = {
+        ...options.headers,
         Authorization: `Bearer ${this.TOKEN}`,
       };
     }
