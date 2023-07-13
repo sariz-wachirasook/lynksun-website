@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { getCookie } from '../../utils/cookie';
 
 class BaseApi {
   public static instance: BaseApi;
@@ -7,7 +8,7 @@ class BaseApi {
 
   constructor() {
     this.API_BASE_URL = import.meta.env.VITE_API_BASE_URL + '/api/v1';
-    this.TOKEN = '';
+    this.TOKEN = getCookie('token');
   }
 
   public static getInstance(): BaseApi {
@@ -36,11 +37,18 @@ class BaseApi {
   private async request<T>(path: string, method: string, params?: any): Promise<T> {
     const url = `${path}`;
     const options: AxiosRequestConfig = {
+      baseURL: this.API_BASE_URL,
       method,
       url,
-      baseURL: this.API_BASE_URL,
       data: params,
     };
+
+    if (this.TOKEN) {
+      options.headers = {
+        Authorization: `Bearer ${this.TOKEN}`,
+      };
+    }
+
     return axios(options).then((response) => response.data);
   }
 }

@@ -11,7 +11,7 @@ export const setCookie = ({ name, value, expires = 365 }: CookieOptions) => {
   document.cookie = `${name}=${value};${expiresString};path=/`;
 };
 
-export const getCooke = (name: string) => {
+export const getCookie = (name: string) => {
   const cookieName = `${name}=`;
   const cookies = document.cookie.split(';');
   for (let i = 0; i < cookies.length; i++) {
