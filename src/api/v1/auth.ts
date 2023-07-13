@@ -1,42 +1,20 @@
+import { LoginParamsType, LoginResponseType, RegisterParamsType } from '../../interfaces/auth';
 import BaseApi from './base';
 
-interface LoginParams {
-  email: string;
-  password: string;
-}
+class AuthService extends BaseApi {
+  public static instance: AuthService;
 
-interface RegisterParams {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
-interface LoginResponse {
-  token: string;
-  refresh_token: string;
-}
-
-class Auth extends BaseApi {
-  public static instance: Auth;
-
-  public static getInstance(): Auth {
-    if (!Auth.instance) {
-      Auth.instance = new Auth();
-    }
-    return Auth.instance;
-  }
-
-  public login(params: LoginParams): Promise<LoginResponse> {
+  public login(params: LoginParamsType): Promise<LoginResponseType> {
     return this.post('/auth/login', params);
   }
 
-  public register(params: RegisterParams): Promise<any> {
+  public register(params: RegisterParamsType): Promise<LoginResponseType> {
     return this.post('/auth/register', params);
   }
 
-  public refreshToken(): Promise<LoginResponse> {
+  public refreshToken(): Promise<LoginResponseType> {
     return this.post('/auth/refresh-token');
   }
 }
 
-export default Auth;
+export default AuthService;

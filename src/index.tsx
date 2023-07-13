@@ -11,10 +11,12 @@ import reportWebVitals from './reportWebVitals';
 import Router from './router';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(
-  <React.StrictMode>
-    <Router />
-  </React.StrictMode>,
-);
+root.render(<Router />);
 
+const jsDefaultLayout = document.querySelector('.js-default-layout');
+const jsAppLayout = document.querySelector('.js-app-layout');
+
+if (jsDefaultLayout) {
+  console.log('default layout');
+}
 reportWebVitals();

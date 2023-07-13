@@ -14,6 +14,7 @@ interface Props {
   disabled?: boolean;
   autoComplete?: string;
   pattern?: string;
+  readOnly?: boolean;
 }
 
 const Text: FC<Props> = ({
@@ -28,6 +29,7 @@ const Text: FC<Props> = ({
   className = '',
   autoComplete,
   pattern,
+  readOnly = false,
 }) => {
   return (
     <div className={`${label ? 'mb-4' : ''} ${className}`}>
@@ -44,6 +46,8 @@ const Text: FC<Props> = ({
         {...(autoComplete && { autoComplete })}
         value={value}
         disabled={disabled}
+        {...(disabled && { readOnly: true })}
+        {...(readOnly && !disabled && { readOnly: true })}
       />
     </div>
   );

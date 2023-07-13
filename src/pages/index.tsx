@@ -7,19 +7,12 @@ import { useTranslation } from 'react-i18next';
 import LinkService from '../api/v1/link';
 import { formatDateTime } from '../utils/date';
 import Badge from '../components/badge';
-
-interface Link {
-  id?: number;
-  url: string;
-  short_url?: string;
-  expires_at?: string;
-  updated_at?: string;
-  created_at?: string;
-}
+import { LinkType } from '../interfaces/link';
+import 'flowbite';
 
 const Page: FC = () => {
   const [loading, setLoading] = useState(false);
-  const [link, setLink] = useState<Link>({
+  const [link, setLink] = useState<LinkType>({
     id: 0,
     url: '',
     short_url: '',
@@ -120,7 +113,7 @@ const Page: FC = () => {
               </div>
               <p>
                 {t('your-link-will-be-expired-at')}
-                <Badge className='ml-2' label={formatDateTime(link.expires_at as string)} />
+                <Badge className="ml-2">{formatDateTime(link.expires_at as string)}</Badge>
               </p>
             </div>
           </Card>

@@ -14,9 +14,11 @@ const LoginPage: FC = () => {
     const AuthService = new Auth();
 
     try {
+      const formData = new FormData(e.currentTarget);
+
       const request = await AuthService.login({
-        email: '',
-        password: '',
+        email: formData.get('email') as string,
+        password: formData.get('password') as string,
       });
 
       setCookie({ name: 'token', value: request.token, expires: 1 });

@@ -6,6 +6,16 @@ import { useTranslation } from 'react-i18next';
 
 const ResetPassword: FC = () => {
   const { t } = useTranslation();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+    } catch (error: any) {}
+  };
+
   return (
     <DefaultLayout>
       <section>
@@ -21,7 +31,7 @@ const ResetPassword: FC = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 {t('reset-password')}
               </h1>
-              <form action="#">
+              <form onSubmit={handleSubmit}>
                 <Text
                   type="password"
                   name="password"
@@ -37,7 +47,7 @@ const ResetPassword: FC = () => {
                   placeholder="••••••••"
                   label={t('confirm-new-password')}
                   required
-                  className='mb-10'
+                  className="mb-10"
                 />
 
                 <Button type="submit" className="w-full mb-2.5" label={t('reset-password')} />

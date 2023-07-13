@@ -4,6 +4,7 @@ import Button from '../../components/button';
 import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
 import Auth from '../../api/v1/auth';
+import { setCookie } from '../../utils/cookie';
 
 const Register: FC = () => {
   const { t } = useTranslation();
@@ -13,13 +14,17 @@ const Register: FC = () => {
     const AuthService = new Auth();
 
     try {
-      await AuthService.register({
-        email: '',
-        password: '',
-        confirmPassword: '',
+      const formData = new FormData(e.currentTarget);
+
+      const response = await AuthService.register({
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        password: formData.get('password') as string,
       });
 
-      window.location.href = '/login';
+      setCookie({ name: 'token', value: response.token, expires: 1 });
+      setCookie({ name: 'refresh_token', value: response.refresh_token, expires: 1 });
+      window.location.href = '/app';
     } catch (error) {
       alert(error);
     }
@@ -41,6 +46,8 @@ const Register: FC = () => {
                 {t('create-an-account')}
               </h1>
               <form onSubmit={handleSubmit}>
+                <Text name="name" placeholder={t('name')} label={t('name')} required />
+
                 <Text
                   type="email"
                   name="email"

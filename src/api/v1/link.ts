@@ -1,35 +1,30 @@
 import BaseApi from './base';
 
-import { Link as LinkType } from '../../interfaces/link';
+import { LinkType, LinkParamsType, LinksType } from '../../interfaces/link';
+import { DeleteResponseType } from '../../interfaces/response';
 
-interface LinkParams {
-  url: string;
-}
+class LinkService extends BaseApi {
+  public static instance: LinkService;
 
-interface LinkResponse extends LinkType {}
-
-class Link extends BaseApi {
-  public static instance: Link;
-
-  public getAll(): Promise<LinkResponse[]> {
+  public getAll(): Promise<LinksType> {
     return this.get('/links');
   }
 
-  public getOne(id: string): Promise<LinkResponse> {
+  public getOne(id: any): Promise<LinkType> {
     return this.get(`/links/${id}`);
   }
 
-  public create(params: LinkParams): Promise<any> {
+  public create(params: LinkParamsType): Promise<LinkType> {
     return this.post('/links', params);
   }
 
-  public update(id: string, params: LinkParams): Promise<any> {
+  public update(id: any, params: LinkParamsType): Promise<LinkType> {
     return this.put(`/links/${id}`, params);
   }
 
-  public delete(id: string): Promise<any> {
+  public delete(id: any): Promise<DeleteResponseType> {
     return this.delete(`/links/${id}`);
   }
 }
 
-export default Link;
+export default LinkService;

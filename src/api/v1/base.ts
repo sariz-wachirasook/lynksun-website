@@ -1,10 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { getCookie } from '../../utils/cookie';
+import { DeleteResponseType } from '../../interfaces/response';
 
 class BaseApi {
   public static instance: BaseApi;
-  public API_BASE_URL: string;
-  public TOKEN: string;
+  private API_BASE_URL: string;
+  private TOKEN: string;
 
   constructor() {
     this.API_BASE_URL = import.meta.env.VITE_API_BASE_URL + '/api/v1';
@@ -19,19 +20,19 @@ class BaseApi {
   }
 
   public get<T>(path: string, params?: any): Promise<T> {
-    return this.request<T>(path, 'GET', params);
+    return this.request(path, 'GET', params);
   }
 
   public post<T>(path: string, params?: any): Promise<T> {
-    return this.request<T>(path, 'POST', params);
+    return this.request(path, 'POST', params);
   }
 
   public put<T>(path: string, params?: any): Promise<T> {
-    return this.request<T>(path, 'PUT', params);
+    return this.request(path, 'PUT', params);
   }
 
-  public delete<T>(path: string, params?: any): Promise<T> {
-    return this.request<T>(path, 'DELETE', params);
+  public delete<T>(path: string, params?: any): Promise<DeleteResponseType> {
+    return this.request(path, 'DELETE', params);
   }
 
   private async request<T>(path: string, method: string, params?: any): Promise<T> {

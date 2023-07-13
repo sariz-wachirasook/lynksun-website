@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 // NOTE: performance optimization
 const HonePage = React.lazy(() => import('./pages/index'));
