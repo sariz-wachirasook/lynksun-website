@@ -10,6 +10,7 @@ import Badge from '../components/badge';
 import { LinkType } from '../interfaces/link';
 import 'flowbite';
 import { toast } from 'react-toastify';
+import { getCookie } from '../utils/cookie';
 
 const Page: FC = () => {
   // state
@@ -25,7 +26,12 @@ const Page: FC = () => {
 
   // -------------------- //
   const { t } = useTranslation();
+  const token = getCookie('token');
   const notifyError = () => toast.error(t('something-went-wrong'));
+
+  if (token) {
+    window.location.href = '/app';
+  }
 
   // function
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
