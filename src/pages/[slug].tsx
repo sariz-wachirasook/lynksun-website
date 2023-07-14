@@ -14,7 +14,7 @@ const SlugPage: FC = () => {
     const linkService = new LinkService();
     const fetchLink = async () => {
       try {
-        const slug = window.location.pathname;
+        const slug = window.location.pathname.replace('/', '');
         const response = await linkService.getOneBySlug(slug);
         const link: LinkType = response;
         if (link) {
