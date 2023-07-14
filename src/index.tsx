@@ -13,6 +13,11 @@ import Router from './router';
 import { Provider } from 'react-redux';
 import { store } from './store/index';
 import App from './app';
+import ReactGA from 'react-ga';
+
+// Google Analytics
+ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
