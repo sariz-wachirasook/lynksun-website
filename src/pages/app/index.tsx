@@ -13,6 +13,7 @@ const AppPage: FC = () => {
   const [mostVisited, setMostVisited] = useState<LinksType>();
   const [totalVisitsByDate, setTotalVisitsByDate] = useState<any>();
   const [totalVisits, setTotalVisits] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   const { t } = useTranslation();
   const user = useSelector((state: any) => state.auth.user);
@@ -20,10 +21,15 @@ const AppPage: FC = () => {
   const hostname = window.location.origin;
 
   useEffect(() => {
-    fetchMostVisited();
-    fetchTotalVisitsByDate();
-    fetchTotalVisits();
+    init();
   }, []);
+
+  const init = async () => {
+    setLoading(true);
+    await Promise.all([fetchMostVisited(), fetchTotalVisitsByDate(), fetchTotalVisits()]);
+
+    setLoading(false);
+  };
 
   const fetchMostVisited = async () => {
     const response = await linkAnalyticService.getMostVisited({
@@ -64,7 +70,8 @@ const AppPage: FC = () => {
         </Card>
       </div>
       <Card className="mb-5">
-        {totalVisitsByDate && (
+        {loading && <span>Loading Graph...</span>}
+        {!loading && totalVisitsByDate && (
           <VerticalBar
             title={t('visits')}
             datasets={[

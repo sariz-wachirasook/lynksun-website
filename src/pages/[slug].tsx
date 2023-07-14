@@ -1,13 +1,39 @@
 import { useState, type FC, useEffect } from 'react';
 import { LinkType } from '../interfaces/link';
 import LinkService from '../api/v1/link';
+import Error404Page from './404';
 
 const SlugPage: FC = () => {
-  const slug = window.location.pathname.replace('/', '');
-  const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-  window.location.href = `${VITE_API_BASE_URL}/api/v1/links/open/${slug}`;
+  const [loading, setLoading] = useState<boolean>(true);
 
-  return <></>;
+  // const slug = window.location.pathname.replace('/', '');
+  // const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  // window.location.href = `${VITE_API_BASE_URL}/api/v1/links/open/${slug}`;
+
+  useEffect(() => {
+    const linkService = new LinkService();
+    const fetchLink = async () => {
+      try {
+        const slug = window.location.pathname;
+        const response = await linkService.getOneBySlug(slug);
+        const link: LinkType = response;
+        if (link) {
+          window.location.href = link.url;
+        } else {
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+    fetchLink();
+  }, []);
+
+  if (loading) {
+    return <div>Checking...</div>;
+  } else {
+    return <Error404Page />;
+  }
 };
 
 export default SlugPage;

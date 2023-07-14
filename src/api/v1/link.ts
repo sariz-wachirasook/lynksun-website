@@ -19,6 +19,10 @@ class LinkService extends BaseApi {
     return this.get(`/links/${id}`);
   }
 
+  public getOneBySlug(slug: any): Promise<LinkType> {
+    return this.get(`/links/slug${slug}`);
+  }
+
   public create(params: LinkParamsType): Promise<LinkType> {
     return this.post('/links', params);
   }

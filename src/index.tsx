@@ -12,7 +12,7 @@ import Router from './router';
 
 import { Provider } from 'react-redux';
 import { store } from './store/index';
-import App from './App';
+import App from './app';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

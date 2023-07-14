@@ -121,16 +121,12 @@ const AppLinksPage: FC = () => {
 
     setLoading(true);
 
-    try {
-      const formData = new FormData(e.currentTarget);
-      const linkService = new LinkService();
-      const response = await linkService.getAll({
-        search: formData.get('search') as string,
-      });
-      setLinks(response);
-    } catch (error) {
-      console.log(error);
-    }
+    const formData = new FormData(e.currentTarget);
+    const linkService = new LinkService();
+    const response = await linkService.getAll({
+      search: formData.get('search') as string,
+    });
+    setLinks(response);
 
     setLoading(false);
   };

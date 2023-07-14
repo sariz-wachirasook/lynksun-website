@@ -68,7 +68,6 @@ class BaseService {
 
     api.interceptors.response.use(
       (response) => {
-        console.log(response);
         switch (response.config.method) {
           case 'post':
             toast.success(t('create-success'));

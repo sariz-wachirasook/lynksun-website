@@ -45,7 +45,6 @@ class App extends React.Component<Props> {
           this.props.setUser(user);
         }
       } catch (error) {
-        console.log('fail');
         deleteCookie('token');
         window.location.href = '/login';
       }
