@@ -70,5 +70,9 @@
   "network-error": "Network error",
   "request-timeout": "Request timeout",
   "unauthorized": "Unauthorized",
-  "update-success": "Update success"
+  "update-success": "Update success",
+  "total-link-created": "Total link created",
+  "total-visit": "Total visit",
+  "last-365-days": "Last 365 days",
+  "in-construction": "In construction"
 }

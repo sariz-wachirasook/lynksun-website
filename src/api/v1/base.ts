@@ -45,15 +45,9 @@ class BaseService {
       timeout: 1000,
       headers: {
         Accept: this.ACCEPT,
+        Authorization: `Bearer ${this.TOKEN}`,
       },
     };
-
-    if (this.TOKEN) {
-      apiOptions.headers = {
-        ...apiOptions.headers,
-        Authorization: `Bearer ${this.TOKEN}`,
-      };
-    }
 
     const api = axios.create(apiOptions);
 

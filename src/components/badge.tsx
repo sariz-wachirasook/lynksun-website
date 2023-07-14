@@ -3,7 +3,7 @@ import { FC, type ReactNode } from 'react';
 interface Props {
   children: ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 
 const Badge: FC<Props> = ({ className, children, onClick }) => {

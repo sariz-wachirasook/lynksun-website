@@ -68,7 +68,6 @@ const AppLinksPage: FC = () => {
   };
 
   const handleCopy = (link: string) => {
-    event.preventDefault();
     navigator.clipboard.writeText(link);
     toast.info(t('copied'));
   };
@@ -95,7 +94,6 @@ const AppLinksPage: FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setLoading(true);
     const linkService = new LinkService();
     const formData = new FormData(e.currentTarget);
     const request = await linkService.update(link?.id, {
@@ -105,7 +103,6 @@ const AppLinksPage: FC = () => {
     setLink(request);
     await fetchLinks();
     await fetchVisits(link?.id);
-    setLoading(false);
   };
 
   const handleDownloadQRCode = () => {
@@ -177,7 +174,10 @@ const AppLinksPage: FC = () => {
                       {t('url')}:
                       <Badge
                         className="overflow-hidden truncate text-ellipsis block cursor-pointer"
-                        onClick={() => handleCopy(`${hostname}/${linkDetail.short_url}`)}
+                        onClick={(e: any) => {
+                          e.stopPropagation();
+                          handleCopy(`${hostname}/${linkDetail.short_url}`);
+                        }}
                       >
                         <span>
                           <i className="fa-solid fa-copy mr-2"></i>
@@ -192,7 +192,10 @@ const AppLinksPage: FC = () => {
                       <span className="whitespace-nowrap"> {t('original-url')}:</span>
                       <Badge
                         className="overflow-hidden truncate text-ellipsis block cursor-pointer"
-                        onClick={() => handleCopy(linkDetail.url)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopy(linkDetail.url);
+                        }}
                       >
                         <i className="fa-solid fa-copy mr-2"></i>
                         <span>{linkDetail.url}</span>

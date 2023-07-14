@@ -82,6 +82,7 @@ const AppProfilePage: FC = () => {
             name="old_password"
             type="password"
             required
+            autoComplete="current-password"
           />
 
           <Text
@@ -90,6 +91,7 @@ const AppProfilePage: FC = () => {
             name="new_password"
             type="password"
             required
+            autoComplete="new-password"
           />
 
           <Text
@@ -98,6 +100,7 @@ const AppProfilePage: FC = () => {
             name="confirm_password"
             type="password"
             required
+            autoComplete="new-password"
           />
 
           <Button type="submit" label={t('save')} />
@@ -113,6 +116,7 @@ const AppProfilePage: FC = () => {
             name="password"
             type="password"
             required
+            autoComplete="current-password"
           />
 
           <Button type="submit" label={t('delete')} buttonType="danger" />

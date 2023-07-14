@@ -7,9 +7,13 @@ import LinkAnalyticsService from '../../api/v1/link-analytics';
 import { LinksType } from '../../interfaces/link';
 import Badge from '../../components/badge';
 import { toast } from 'react-toastify';
+import VerticalBar from '../../components/chart/vertical-bar';
 
 const AppPage: FC = () => {
   const [mostVisited, setMostVisited] = useState<LinksType>();
+  const [totalVisitsByDate, setTotalVisitsByDate] = useState<any>();
+  const [totalVisits, setTotalVisits] = useState<any>();
+
   const { t } = useTranslation();
   const user = useSelector((state: any) => state.auth.user);
   const linkAnalyticService = new LinkAnalyticsService();
@@ -17,6 +21,8 @@ const AppPage: FC = () => {
 
   useEffect(() => {
     fetchMostVisited();
+    fetchTotalVisitsByDate();
+    fetchTotalVisits();
   }, []);
 
   const fetchMostVisited = async () => {
@@ -24,6 +30,16 @@ const AppPage: FC = () => {
       per_page: 3,
     });
     setMostVisited(response);
+  };
+
+  const fetchTotalVisitsByDate = async () => {
+    const response = await linkAnalyticService.getTotalVisitsByDate({});
+    setTotalVisitsByDate(response);
+  };
+
+  const fetchTotalVisits = async () => {
+    const response = await linkAnalyticService.getTotalVisits({});
+    setTotalVisits(response);
   };
 
   const handleCopy = (link: string) => {
@@ -37,11 +53,31 @@ const AppPage: FC = () => {
         {t('howdy')}, {user?.name}
       </h1>
 
-      <div className="grid md:grid-cols-2 gap-4 mb-4">
-        <Card>To</Card>
-        <Card>To</Card>
+      <div className="grid md:grid-cols-3 gap-4 mb-4">
+        <Card>
+          <h4 className="mb-2.5">{t('total-link-created')}</h4>
+          <p className="text-2xl font-bold">{mostVisited?.total}</p>
+        </Card>
+        <Card>
+          <h4 className="mb-2.5">{t('total-visit')}</h4>
+          <p className="text-2xl font-bold">{totalVisits?.total_visit_count}</p>
+        </Card>
       </div>
-      <Card className="mb-5">To</Card>
+      <Card className="mb-5">
+        {totalVisitsByDate && (
+          <VerticalBar
+            title={t('visits')}
+            datasets={[
+              {
+                label: t('last-365-days'),
+                data: totalVisitsByDate.map((v: any) => v.count),
+                backgroundColor: '#3B82F6',
+              },
+            ]}
+            labels={totalVisitsByDate.map((v: any) => v.date)}
+          />
+        )}
+      </Card>
 
       <h2 className="mb-4">{t('most-visited-links')}</h2>
       <div className="grid md:grid-cols-3 gap-4">

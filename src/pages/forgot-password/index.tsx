@@ -45,12 +45,12 @@ const ForgotPasswordPage: FC = () => {
             href="/"
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            {t('lynksun')}
+            {t('lynksun')} ({t('in-construction')})
           </a>
 
           {/* before submit */}
           {!isSubmitted && (
-            <Card className="w-full max-w-md p-5 mb-5">
+            <Card className="w-full max-w-md p-5 mb-5 opacity-50 pointer-events-none">
               {loading && (
                 <div className="flex items-center justify-center">
                   <div className="w-6 h-6 mr-3 border-2 border-t-2 border-gray-900 rounded-full animate-spin"></div>

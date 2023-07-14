@@ -67,7 +67,7 @@ const LoginPage: FC = () => {
                 />
 
                 {/* TODO: remember me */}
-                {/* <div className="flex items-center justify-between mb-10">
+                <div className="flex items-center justify-between mb-10">
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
                       <input
@@ -89,7 +89,7 @@ const LoginPage: FC = () => {
                   >
                     {t('forgot-password')}
                   </a>
-                </div> */}
+                </div>
                 <Button type="submit" className="w-full mb-2.5" label={t('sign-in')} />
 
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
