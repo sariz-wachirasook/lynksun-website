@@ -121,7 +121,7 @@ const Router = () => {
   const authPage = ['/login', '/register', '/forgot-password', '/reset-password', '/logout'];
   const path = window.location.pathname;
 
-  if (authPage.includes(path)) {
+  if (token && authPage.includes(path)) {
     window.location.href = '/app';
   }
 
