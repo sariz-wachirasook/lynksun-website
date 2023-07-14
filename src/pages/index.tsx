@@ -80,7 +80,7 @@ const Page: FC = () => {
             <Button type="submit" label={t('submit')} className="mb-5" />
             <p>
               {t('any-link-will-expires-in-24hr-consider-to')}{' '}
-              <a href="/register">{t('register')}</a>
+              <a href="/register">{t('register')}</a>{' '}
               {t('to-get-unlimited-link-expires-time')}
             </p>
           </form>
