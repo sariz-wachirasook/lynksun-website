@@ -1,11 +1,10 @@
 import { FC } from 'react';
-import AppLayout from '../../../layouts/app';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import AuthService from '../../../api/v1/auth';
+import Button from '../../../components/button';
 import Card from '../../../components/card';
 import Text from '../../../components/input/input';
-import { useTranslation } from 'react-i18next';
-import Button from '../../../components/button';
-import AuthService from '../../../api/v1/auth';
 import { setUser } from '../../../store/auth';
 import { deleteCookie } from '../../../utils/cookie';
 

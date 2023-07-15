@@ -1,7 +1,5 @@
 import { type FC } from 'react';
 
-import Layout from '../layouts/default';
-
 const Error404Page: FC = () => {
   return (
     <div className="text-center mb-5 pt-[30vh]">

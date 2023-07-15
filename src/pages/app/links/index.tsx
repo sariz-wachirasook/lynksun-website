@@ -1,17 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
-import AppLayout from '../../../layouts/app';
-import { LinkType, LinksType } from '../../../interfaces/link';
-import LinkService from '../../../api/v1/link';
-import Card from '../../../components/card';
-import { useTranslation } from 'react-i18next';
-import Badge from '../../../components/badge';
-import Text from '../../../components/input/input';
-import Button from '../../../components/button';
 import { QRCodeCanvas } from 'qrcode.react';
-import VerticalBar from '../../../components/chart/vertical-bar';
-import SearchInput from '../../../components/input/search';
-import { formatDateTime } from '../../../utils/date';
+import React, { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import LinkService from '../../../api/v1/link';
+import Badge from '../../../components/badge';
+import Button from '../../../components/button';
+import Card from '../../../components/card';
+import VerticalBar from '../../../components/chart/vertical-bar';
+import Text from '../../../components/input/input';
+import SearchInput from '../../../components/input/search';
+import { LinkType, LinksType } from '../../../interfaces/link';
+import { formatDateTime } from '../../../utils/date';
 
 const AppLinksPage: FC = () => {
   const [links, setLinks] = useState<LinksType | undefined>();

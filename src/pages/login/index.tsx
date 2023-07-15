@@ -1,9 +1,8 @@
 import { FC } from 'react';
-import DefaultLayout from '../../layouts/default';
-import Button from '../../components/button';
-import Text from '../../components/input/input';
 import { useTranslation } from 'react-i18next';
 import Auth from '../../api/v1/auth';
+import Button from '../../components/button';
+import Text from '../../components/input/input';
 import { getCookie, setCookie } from '../../utils/cookie';
 
 const LoginPage: FC = () => {

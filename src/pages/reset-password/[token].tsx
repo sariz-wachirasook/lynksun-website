@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import DefaultLayout from '../../layouts/default';
+import { useTranslation } from 'react-i18next';
 import Button from '../../components/button';
 import Text from '../../components/input/input';
-import { useTranslation } from 'react-i18next';
 
 const ResetPassword: FC = () => {
   const { t } = useTranslation();

@@ -1,13 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import AppLayout from '../../layouts/app';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import Card from '../../components/card';
-import LinkAnalyticsService from '../../api/v1/link-analytics';
-import { LinksType } from '../../interfaces/link';
-import Badge from '../../components/badge';
 import { toast } from 'react-toastify';
+import LinkAnalyticsService from '../../api/v1/link-analytics';
+import Badge from '../../components/badge';
+import Card from '../../components/card';
 import VerticalBar from '../../components/chart/vertical-bar';
+import { LinksType } from '../../interfaces/link';
 
 const AppPage: FC = () => {
   const [mostVisited, setMostVisited] = useState<LinksType>();

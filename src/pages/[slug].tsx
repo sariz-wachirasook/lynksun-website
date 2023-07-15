@@ -1,6 +1,6 @@
-import { useState, type FC, useEffect } from 'react';
-import { LinkType } from '../interfaces/link';
+import { useEffect, useState, type FC } from 'react';
 import LinkService from '../api/v1/link';
+import { LinkType } from '../interfaces/link';
 import Error404Page from './404';
 
 const SlugPage: FC = () => {

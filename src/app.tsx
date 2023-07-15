@@ -1,13 +1,10 @@
+import { Partytown } from '@builder.io/partytown/react';
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteCookie, getCookie } from './utils/cookie';
+import { ToastContainer } from 'react-toastify';
 import AuthService from './api/v1/auth';
 import { setUser } from './store/auth';
-import { ToastContainer } from 'react-toastify';
-import { Partytown } from '@builder.io/partytown/react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AppLayout from './layouts/app';
-import DefaultLayout from './layouts/default';
+import { deleteCookie, getCookie } from './utils/cookie';
 function mapStateToProps(state: any) {
   return {
     user: state.auth.user,

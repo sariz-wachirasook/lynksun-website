@@ -1,10 +1,10 @@
 import { type FC } from 'react';
 
-import LanguageSwitcher from '../language-switcher';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getCookie } from '../../utils/cookie';
+import LanguageSwitcher from '../language-switcher';
 
 interface Route {
   name: string;

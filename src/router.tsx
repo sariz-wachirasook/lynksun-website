@@ -1,19 +1,10 @@
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-} from 'react-router-dom';
-import React, { Suspense, useEffect } from 'react';
-import authMiddleWare from './middleware/auth';
-import { useSelector } from 'react-redux';
+import React, { Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { getCookie } from './utils/cookie';
-import AuthService from './api/v1/auth';
-import AppLayout from './layouts/app';
-import DefaultLayout from './layouts/default';
 
 // NOTE: performance optimization
+const AppLayout = React.lazy(() => import('./layouts/app'));
+const DefaultLayout = React.lazy(() => import('./layouts/default'));
 const HonePage = React.lazy(() => import('./pages/index'));
 const Error404Page = React.lazy(() => import('./pages/404'));
 const SlugPage = React.lazy(() => import('./pages/[slug]'));
@@ -56,14 +47,6 @@ const Router = () => {
         </Suspense>
       ),
     },
-    // {
-    //   path: '*',
-    //   element: (
-    //     <Suspense>
-    //       <Error404Page />
-    //     </Suspense>
-    //   ),
-    // },
 
     // auth routes
     {

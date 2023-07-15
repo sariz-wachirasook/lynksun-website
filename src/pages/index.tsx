@@ -1,16 +1,15 @@
+import 'flowbite';
 import { useState, type FC } from 'react';
-import DefaultLayout from '../layouts/default';
-import Input from '../components/input/input';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import LinkService from '../api/v1/link';
+import Badge from '../components/badge';
 import Button from '../components/button';
 import Card from '../components/card';
-import { useTranslation } from 'react-i18next';
-import LinkService from '../api/v1/link';
-import { formatDateTime } from '../utils/date';
-import Badge from '../components/badge';
+import Input from '../components/input/input';
 import { LinkType } from '../interfaces/link';
-import 'flowbite';
-import { toast } from 'react-toastify';
 import { getCookie } from '../utils/cookie';
+import { formatDateTime } from '../utils/date';
 
 const Page: FC = () => {
   // state
