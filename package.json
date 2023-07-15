@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "npm run partytown && astro dev",
+    "build": "npm run partytown && astro build",
     "serve": "astro preview",
     "partytown": "partytown copylib public/~partytown"
   },
