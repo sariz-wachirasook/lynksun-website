@@ -1,0 +1,13 @@
+---
+import AppProfilePage from '../../../layouts/app';
+import AppLinksPage from './index.tsx';
+---
+
+<html lang="en">
+    <head></head>
+    <body>
+        <AppProfilePage client:only>
+            <AppLinksPage client:only />
+        </AppProfilePage>
+    </body>
+</html>

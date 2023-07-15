@@ -1,18 +1,18 @@
-import { type FC } from 'react';
+import { useState, type FC, useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { getCookie } from '../../utils/cookie';
 import LanguageSwitcher from '../language-switcher';
-
+import { useStore } from '@nanostores/react';
+import { user } from '../../store/user';
 interface Route {
   name: string;
   path: string;
 }
 
 const Navbar: FC = () => {
-  const user = useSelector((state: any) => state.auth.user);
+  const $user = useStore(user);
   const { t } = useTranslation();
   const token = getCookie('token');
   const routes: Route[] = [
@@ -33,9 +33,9 @@ const Navbar: FC = () => {
           token ? '' : 'max-w-screen-xl'
         } flex flex-wrap items-center justify-between mx-auto p-4`}
       >
-        <Link to={token ? '/app/links' : '/'} className="flex items-center">
+        <a href={token ? '/app/links' : '/'} className="flex items-center">
           <img src="/black-logo.svg" alt="logo" className="w-[176px] h-[55px]" />
-        </Link>
+        </a>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -63,22 +63,19 @@ const Navbar: FC = () => {
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           {token && (
             <div className="items-center gap-2 hidden md:flex">
-              <div className="w-10 h-10 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center font-medium dark:bg-blue-800 dark:text-blue-500">
-                {user?.name[0]?.toUpperCase()}
-              </div>
-              <p>@{user?.name}</p>
+              <p>@{$user?.name}</p>
             </div>
           )}
           {!token && (
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               {routes.map((route) => (
                 <li key={route.name} className="flex items-center">
-                  <Link
-                    to={route.path}
+                  <a
+                    href={route.path}
                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
                     {route.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
               <li>

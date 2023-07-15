@@ -1,18 +1,17 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 import AuthService from '../../../api/v1/auth';
 import Button from '../../../components/button';
 import Card from '../../../components/card';
 import Text from '../../../components/input/input';
-import { setUser } from '../../../store/auth';
-import { deleteCookie } from '../../../utils/cookie';
+import { deleteCookie, getCookie } from '../../../utils/cookie';
+import { user } from '../../../store/user';
+import { useStore } from '@nanostores/react';
 
 const AppProfilePage: FC = () => {
-  const user = useSelector((state: any) => state.auth.user);
+  const $user = useStore(user);
   const { t } = useTranslation();
   const authService = new AuthService();
-  const dispatch = useDispatch();
 
   const handleSubmitUpdateName = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,7 +21,7 @@ const AppProfilePage: FC = () => {
       name: formData.get('name') as string,
     });
 
-    dispatch(setUser(response));
+    user.set(response);
   };
 
   const handleSubmitUpdatePassword = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +34,7 @@ const AppProfilePage: FC = () => {
       confirm_password: formData.get('confirm_password') as string,
     });
 
-    dispatch(setUser(response));
+    user.set(response);
 
     const form = document.querySelector('.js-form-update-password') as HTMLFormElement;
     form.reset();
@@ -47,7 +46,7 @@ const AppProfilePage: FC = () => {
     if (window.confirm(t('are-you-sure'))) {
       await authService.deleteMe();
       deleteCookie('token');
-      dispatch(setUser(null));
+      user.set(null);
       window.location.href = '/';
     }
   };
@@ -65,7 +64,7 @@ const AppProfilePage: FC = () => {
             placeholder={t('name')}
             name="name"
             required
-            defaultValue={user?.name}
+            defaultValue={$user?.name}
           />
           <Button type="submit" label={t('save')} />
         </form>
@@ -79,7 +78,7 @@ const AppProfilePage: FC = () => {
             name="email"
             autoComplete="username email"
             style={{ display: 'none' }}
-            defaultValue={user?.email}
+            defaultValue={$user?.email}
           />
 
           <Text
@@ -121,7 +120,7 @@ const AppProfilePage: FC = () => {
             name="email"
             autoComplete="username email"
             style={{ display: 'none' }}
-            defaultValue={user?.email}
+            defaultValue={$user?.email}
           />
 
           <Text

@@ -1,8 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import en from './locales/en.json';
-import th from './locales/th.json';
-import { getCookie } from './utils/cookie';
+import en from '../locales/en.json';
+import th from '../locales/th.json';
+import { getCookie } from './cookie';
 
 const locale = getCookie('locale') || 'en';
 

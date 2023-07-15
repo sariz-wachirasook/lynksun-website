@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { deleteCookie, getCookie } from '../../utils/cookie';
+import { getCookie } from '../../utils/cookie';
 import { DeleteResponseType } from '../../interfaces/response';
 import { toast } from 'react-toastify';
 import { t } from 'i18next';
@@ -11,7 +11,7 @@ class BaseService {
   private ACCEPT: string;
 
   constructor() {
-    this.API_BASE_URL = import.meta.env.VITE_API_BASE_URL + '/api/v1';
+    this.API_BASE_URL = import.meta.env.PUBLIC_API_BASE_URL + '/api/v1';
     this.TOKEN = getCookie('token');
     this.ACCEPT = 'application/json';
   }

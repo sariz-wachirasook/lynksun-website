@@ -1,0 +1,40 @@
+---
+import DefaultLayout from '../layouts/default';
+import Error404Page from './404';
+---
+
+<html>
+    <body class="hidden">
+        <DefaultLayout client:only>
+            <Error404Page client:only />
+        </DefaultLayout>
+    </body>
+
+    <script>
+        const api = import.meta.env.PUBLIC_API_BASE_URL;
+
+        // check if path name is
+        const slug = window.location.pathname.split('/');
+
+        if (slug.length === 2) {
+            // fetch
+            fetch(`${api}/api/v1/links/slug/${slug[1]}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((response) => response.json())
+                .then(({ url }) => {
+                    if (url) window.location.href = url;
+                    else {
+                        // remove hidden class
+                        document.body.classList.remove('hidden');
+                    }
+                })
+                .catch((error) => console.log(error));
+        } else {
+            document.body.classList.remove('hidden');
+        }
+    </script>
+</html>

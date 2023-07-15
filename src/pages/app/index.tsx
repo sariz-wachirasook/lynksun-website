@@ -1,6 +1,5 @@
 import { FC, lazy, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import LinkAnalyticsService from '../../api/v1/link-analytics';
 import Card from '../../components/card';
@@ -11,13 +10,14 @@ import { LinksType } from '../../interfaces/link';
 const Badge = lazy(() => import('../../components/badge'));
 
 const AppPage: FC = () => {
+  const [user, setUser] = useState<any>();
   const [mostVisited, setMostVisited] = useState<LinksType>();
   const [totalVisitsByDate, setTotalVisitsByDate] = useState<any>();
   const [totalVisits, setTotalVisits] = useState<any>();
   const [loading, setLoading] = useState<boolean>(true);
 
   const { t } = useTranslation();
-  const user = useSelector((state: any) => state.auth.user);
+
   const linkAnalyticService = new LinkAnalyticsService();
   const hostname = window.location.origin;
 

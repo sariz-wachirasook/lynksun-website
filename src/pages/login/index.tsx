@@ -3,19 +3,14 @@ import { useTranslation } from 'react-i18next';
 import Auth from '../../api/v1/auth';
 import Button from '../../components/button';
 import Text from '../../components/input/input';
-import { getCookie, setCookie } from '../../utils/cookie';
+import { setCookie } from '../../utils/cookie';
 
 const LoginPage: FC = () => {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    document.title = `${t('sign-in')} | ${t('lynksun')}`;
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const AuthService = new Auth();
-    const token = getCookie('token');
 
     try {
       const formData = new FormData(e.currentTarget);

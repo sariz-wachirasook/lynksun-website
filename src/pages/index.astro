@@ -1,0 +1,14 @@
+---
+import DefaultLayout from '../layouts/default';
+import Head from '../layouts/head.astro';
+import Page from './index.tsx';
+---
+
+<html lang="en">
+    <Head />
+    <body>
+        <DefaultLayout client:only>
+            <Page client:only />
+        </DefaultLayout>
+    </body>
+</html>

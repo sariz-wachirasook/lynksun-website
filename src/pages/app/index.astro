@@ -1,0 +1,13 @@
+---
+import AppLayout from '../../layouts/app';
+import Page from './index.tsx';
+---
+
+<html lang="en">
+    <head></head>
+    <body>
+        <AppLayout client:only>
+            <Page client:only />
+        </AppLayout>
+    </body>
+</html>
