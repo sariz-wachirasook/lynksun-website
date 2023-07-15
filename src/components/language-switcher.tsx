@@ -1,12 +1,18 @@
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { setCookie } from '../utils/cookie';
 
 const LanguageSwitcher: FC = () => {
   const { t, i18n } = useTranslation();
   const availableLanguages = ['en', 'th'];
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language);
+  // function
+  const handleChangeLanguage = (locale: string) => {
+    i18n.changeLanguage(locale);
+    setCookie({
+      name: 'locale',
+      value: locale,
+    });
   };
 
   return (
@@ -37,7 +43,7 @@ const LanguageSwitcher: FC = () => {
             >
               <button
                 type="button"
-                onClick={() => changeLanguage(language)}
+                onClick={() => handleChangeLanguage(language)}
                 className="flex items-center justify-between w-full"
               >
                 <span>{t(`${language}`)}</span>
