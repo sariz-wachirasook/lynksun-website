@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Auth from '../../api/v1/auth';
 import Button from '../../components/button';
@@ -7,6 +7,10 @@ import { getCookie, setCookie } from '../../utils/cookie';
 
 const LoginPage: FC = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = `${t('sign-in')} | ${t('lynksun')}`;
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
