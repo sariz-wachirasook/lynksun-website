@@ -34,7 +34,7 @@ const Navbar: FC = () => {
         } flex flex-wrap items-center justify-between mx-auto p-4`}
       >
         <Link to={token ? '/app/links' : '/'} className="flex items-center">
-          <img src="/black-logo.svg" alt="logo" className="w-[10rem] md:w-[11rem]" />
+          <img src="/black-logo.svg" alt="logo" className="w-[176px] h-[55px]" />
         </Link>
         <button
           data-collapse-toggle="navbar-default"
@@ -61,7 +61,7 @@ const Navbar: FC = () => {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          {user && (
+          {token && (
             <div className="items-center gap-2 hidden md:flex">
               <div className="w-10 h-10 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center font-medium dark:bg-blue-800 dark:text-blue-500">
                 {user?.name[0]?.toUpperCase()}
@@ -69,7 +69,7 @@ const Navbar: FC = () => {
               <p>@{user?.name}</p>
             </div>
           )}
-          {!user && (
+          {!token && (
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               {routes.map((route) => (
                 <li key={route.name} className="flex items-center">

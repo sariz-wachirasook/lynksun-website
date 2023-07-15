@@ -124,6 +124,10 @@ const Router = () => {
       path: '/app/settings',
       element: <Suspense>{token ? <AppSettingsPage /> : <LoginPage />}</Suspense>,
     },
+    {
+      path: '/app/:error',
+      element: <Suspense>{token ? <Error404Page /> : <LoginPage />}</Suspense>,
+    },
   ];
 
   const noAuth = ['/login', '/register', '/forgot-password', '/reset-password', '/logout'];
