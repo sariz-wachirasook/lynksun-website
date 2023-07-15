@@ -4,8 +4,12 @@ import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
 
+const site = import.meta.env.SITE_URL;
+
 // https://astro.build/config
 export default defineConfig({
+  site: site,
+
   integrations: [
     react(),
     // astro-compress: https://github.com/astro-community/astro-compress#readme

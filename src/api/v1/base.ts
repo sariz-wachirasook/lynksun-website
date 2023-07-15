@@ -89,6 +89,10 @@ class BaseService {
           toast.error(error.response.data?.message || t('something-went-wrong'));
         }
 
+        if (error.code === 'ERR_NETWORK') {
+          toast.error(t('network-error'));
+        }
+
         throw error;
       },
     );
