@@ -16,7 +16,8 @@ import CardImageSkeleton from '../../../components/skeleton/card-image';
 
 const AppLinksPage: FC = () => {
   const [links, setLinks] = useState<LinksType | undefined>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [linkDetailLoading, setLinkDetailLoading] = useState(true);
   const [link, setLink] = useState<LinkType>();
   const [visits, setVisits] = useState<any[]>([]);
 
@@ -56,16 +57,16 @@ const AppLinksPage: FC = () => {
 
   // ---------- main function ---------- //
   const init = async () => {
-    setLoading(true);
     await fetchLinks(true);
     setLoading(false);
+    setLinkDetailLoading(false);
   };
 
   const handleClickSingleLink = async (id: any) => {
-    setLoading(true);
+    setLinkDetailLoading(true);
     await fetchLink(id);
     await fetchVisits(id);
-    setLoading(false);
+    setLinkDetailLoading(false);
   };
 
   const handleCopy = (link: string) => {
@@ -169,63 +170,64 @@ const AppLinksPage: FC = () => {
               </>
             )}
 
-            {links?.data.map((linkDetail) => (
-              <li className="min-w-0" key={linkDetail.id}>
-                <Card
-                  className={`cursor-pointer ${
-                    linkDetail.id === link?.id ? 'bg-blue-200 dark:bg-blue-800' : ''
-                  }`}
-                  onClick={() => handleClickSingleLink(linkDetail.id)}
-                >
-                  <div>
-                    <h5 className="mb-2.5 overflow-hidden truncate text-ellipsis block">
-                      {linkDetail.name ? linkDetail.name : `${hostname}/${linkDetail.short_url}`}
-                    </h5>
-                    <p className="flex flex-nowrap gap-2 items-center">
-                      {t('url')}:
-                      <Badge
-                        className="overflow-hidden truncate text-ellipsis block cursor-pointer"
-                        onClick={(e: any) => {
-                          e.stopPropagation();
-                          handleCopy(`${hostname}/${linkDetail.short_url}`);
-                        }}
-                      >
-                        <span>
+            {!loading &&
+              links?.data.map((linkDetail) => (
+                <li className="min-w-0" key={linkDetail.id}>
+                  <Card
+                    className={`cursor-pointer ${
+                      linkDetail.id === link?.id ? 'bg-blue-200 dark:bg-blue-800' : ''
+                    }`}
+                    onClick={() => handleClickSingleLink(linkDetail.id)}
+                  >
+                    <div>
+                      <h5 className="mb-2.5 overflow-hidden truncate text-ellipsis block">
+                        {linkDetail.name ? linkDetail.name : `${hostname}/${linkDetail.short_url}`}
+                      </h5>
+                      <p className="flex flex-nowrap gap-2 items-center">
+                        {t('url')}:
+                        <Badge
+                          className="overflow-hidden truncate text-ellipsis block cursor-pointer"
+                          onClick={(e: any) => {
+                            e.stopPropagation();
+                            handleCopy(`${hostname}/${linkDetail.short_url}`);
+                          }}
+                        >
+                          <span>
+                            <i className="fa-solid fa-copy mr-2"></i>
+                            {`${hostname}/${linkDetail.short_url}`}
+                          </span>
+                        </Badge>
+                      </p>
+                      <p>
+                        {t('total-visits')}: {linkDetail.visit_count}
+                      </p>
+                      <p className="flex flex-nowrap gap-2 items-center">
+                        <span className="whitespace-nowrap"> {t('original-url')}:</span>
+                        <Badge
+                          className="overflow-hidden truncate text-ellipsis block cursor-pointer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopy(linkDetail.url);
+                          }}
+                        >
                           <i className="fa-solid fa-copy mr-2"></i>
-                          {`${hostname}/${linkDetail.short_url}`}
-                        </span>
-                      </Badge>
-                    </p>
-                    <p>
-                      {t('total-visits')}: {linkDetail.visit_count}
-                    </p>
-                    <p className="flex flex-nowrap gap-2 items-center">
-                      <span className="whitespace-nowrap"> {t('original-url')}:</span>
-                      <Badge
-                        className="overflow-hidden truncate text-ellipsis block cursor-pointer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCopy(linkDetail.url);
-                        }}
-                      >
-                        <i className="fa-solid fa-copy mr-2"></i>
-                        <span>{linkDetail.url}</span>
-                      </Badge>
-                    </p>
-                  </div>
-                </Card>
-              </li>
-            ))}
+                          <span>{linkDetail.url}</span>
+                        </Badge>
+                      </p>
+                    </div>
+                  </Card>
+                </li>
+              ))}
           </ul>
         </div>
 
         <div>
-          {loading && (
+          {linkDetailLoading && (
             <>
               <CardImageSkeleton />
             </>
           )}
-          {!loading && link && (
+          {!linkDetailLoading && link && (
             <>
               <Card className="mb-4">
                 <h3 className="mb-4">{link.name}</h3>
