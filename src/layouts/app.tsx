@@ -6,7 +6,6 @@ if (!token) {
 import Navbar from '../components/layouts/navbar';
 import Aside from '../components/layouts/aside';
 import { useEffect } from 'react';
-import { useStore } from '@nanostores/react';
 
 import '@fortawesome/fontawesome-free/css/fontawesome.css';
 import '@fortawesome/fontawesome-free/css/solid.css';
@@ -18,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import { user } from '../store/user';
 import { getCookie } from '../utils/cookie';
 import AuthService from '../api/v1/auth';
+import { Partytown } from '@builder.io/partytown/react';
 
 interface Props {
   children: React.ReactNode;
@@ -57,6 +57,7 @@ const AppLayout = ({ children }: Props) => {
       </div>
 
       <ToastContainer />
+      <Partytown forward={['dataLayer.push']} />
     </>
   );
 };

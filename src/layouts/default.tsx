@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import { getCookie } from '../utils/cookie';
 import { user } from '../store/user';
 import AuthService from '../api/v1/auth';
+import { Partytown } from '@builder.io/partytown/react';
 
 interface Props {
   children: React.ReactNode;
@@ -53,6 +54,7 @@ const DefaultLayout = ({ children }: Props) => {
       <Footer />
 
       <ToastContainer />
+      <Partytown forward={['dataLayer.push']} />
     </>
   );
 };
