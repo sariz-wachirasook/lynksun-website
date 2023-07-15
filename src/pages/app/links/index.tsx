@@ -146,13 +146,13 @@ const AppLinksPage: FC = () => {
         </form>
       </Card>
 
-      <div className="grid grid-cols-[1fr,2fr] gap-4">
-        <div className="px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr,2fr] gap-4">
+        <div className="lg:px-2">
           <form className="mb-4" onSubmit={handleSearch}>
             <SearchInput placeholder={t('search')} name="search" />
           </form>
 
-          <ul className="grid gap-4 max-h-[80vh] overflow-y-auto">
+          <ul className="grid gap-4 max-h-[80vh] md:overflow-y-auto overflow-x-auto">
             {links?.data.map((linkDetail) => (
               <li className="min-w-0" key={linkDetail.id}>
                 <Card

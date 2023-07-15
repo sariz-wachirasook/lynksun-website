@@ -1,10 +1,11 @@
 ---
 import AppLayout from '../../layouts/app';
+import Head from '../../layouts/head.astro';
 import Page from './index.tsx';
 ---
 
 <html lang="en">
-    <head></head>
+    <Head />
     <body>
         <AppLayout client:only>
             <Page client:only />

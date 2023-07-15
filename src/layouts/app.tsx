@@ -49,7 +49,7 @@ const AppLayout = ({ children }: Props) => {
     <>
       <Navbar />
 
-      <div className="sm:grid sm:grid-cols-[auto,1fr] relative h-full">
+      <div className="sm:grid sm:grid-cols-[auto,1fr] relative min-h-full">
         <Aside />
         <main className="w-full min-w-0 max-w-screen-xl mx-auto p-[1rem] min-h-[80vh]">
           {children}

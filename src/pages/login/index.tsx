@@ -22,7 +22,7 @@ const LoginPage: FC = () => {
 
       setCookie({ name: 'token', value: request.token, expires: 1 });
 
-      if (window.location.pathname === '/login') {
+      if (window.location.pathname.includes('login')) {
         window.location.href = '/app';
       } else {
         window.location.href = window.location.href;
