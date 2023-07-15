@@ -54,7 +54,7 @@ const AppPage: FC = () => {
   };
 
   return (
-    <AppLayout>
+    <section>
       <h1 className="mb-5">
         {t('howdy')}, {user?.name}
       </h1>
@@ -123,7 +123,7 @@ const AppPage: FC = () => {
           </Card>
         ))}
       </div>
-    </AppLayout>
+    </section>
   );
 };
 

@@ -132,7 +132,7 @@ const AppLinksPage: FC = () => {
   };
 
   return (
-    <AppLayout>
+    <>
       <Card className="mb-4">
         <h2 className="mb-5">{t('create-new-link')}</h2>
         <form onSubmit={handleSubmitCreateNewLink} id="js-create-form">
@@ -291,7 +291,7 @@ const AppLinksPage: FC = () => {
           )}
         </div>
       </div>
-    </AppLayout>
+    </>
   );
 };
 

@@ -4,8 +4,10 @@ import { deleteCookie, getCookie } from './utils/cookie';
 import AuthService from './api/v1/auth';
 import { setUser } from './store/auth';
 import { ToastContainer } from 'react-toastify';
-import ReactGA from 'react-ga';
-
+import { Partytown } from '@builder.io/partytown/react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AppLayout from './layouts/app';
+import DefaultLayout from './layouts/default';
 function mapStateToProps(state: any) {
   return {
     user: state.auth.user,
@@ -24,16 +26,19 @@ interface Props {
   setUser: (user: any) => void;
 }
 
-class App extends React.Component<Props> {
+interface State {
+  token: string | null;
+}
+
+class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    this.state = {
+      token: getCookie('token'),
+    };
   }
 
   componentDidMount(): void {
-    // Google Analytics
-    ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID);
-    ReactGA.pageview(window.location.pathname + window.location.search);
-
     const token = getCookie('token');
     if (token && !this.props.user) {
       this.fetchUser();
@@ -57,8 +62,10 @@ class App extends React.Component<Props> {
   };
 
   render(): React.ReactNode {
+    const token = this.state.token;
     return (
       <>
+        <Partytown forward={['dataLayer.push']} />
         {this.props.children}
         <ToastContainer />
       </>

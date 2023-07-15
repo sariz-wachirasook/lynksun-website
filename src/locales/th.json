@@ -75,5 +75,6 @@
   "visits": "จำนวนการกด",
   "we-sent-email-to": "เราได้ส่งอีเมลไปยัง",
   "your-link-is-ready": "ลิงค์ของคุณพร้อมแล้ว",
-  "your-link-will-be-expired-at": "ลิงค์ของคุณจะหมดอายุเมื่อ"
+  "your-link-will-be-expired-at": "ลิงค์ของคุณจะหมดอายุเมื่อ",
+  "logout": "ออกจากระบบ"
 }

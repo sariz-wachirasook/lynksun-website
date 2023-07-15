@@ -11,6 +11,7 @@
 # production
 /build
 /dist
+/public/~partytown
 
 # misc
 .DS_Store

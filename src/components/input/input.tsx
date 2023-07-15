@@ -8,7 +8,7 @@ interface Props {
   placeholder?: string;
   required?: boolean;
   className?: string;
-  type?: 'text' | 'email' | 'password';
+  type?: 'text' | 'email' | 'password' | 'hidden';
   maxLength?: number;
   defaultValue?: string;
   value?: string;

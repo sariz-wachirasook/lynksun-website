@@ -15,12 +15,10 @@ const AppLayout = ({ children }: Props) => {
 
   return (
     <>
+      <Navbar />
       <div className="sm:grid sm:grid-cols-[auto,1fr] relative h-full">
         <Aside />
-        <div className="min-w-0">
-          <Navbar />
-          <main className="max-w-screen-xl mx-auto p-[1rem] min-h-[80vh]">{children}</main>
-        </div>
+        <main className="w-full min-w-0 max-w-screen-xl mx-auto p-[1rem] min-h-[80vh]">{children}</main>
       </div>
     </>
   );

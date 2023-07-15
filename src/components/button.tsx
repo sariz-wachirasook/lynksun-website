@@ -17,7 +17,7 @@ const Button: FC<Props> = ({
   buttonType,
   prefix,
   suffix,
-  className,
+  className = '',
 }) => {
   const modifier = buttonType ? `btn--${buttonType}` : '';
   return (

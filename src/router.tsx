@@ -1,9 +1,17 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+} from 'react-router-dom';
 import React, { Suspense, useEffect } from 'react';
 import authMiddleWare from './middleware/auth';
 import { useSelector } from 'react-redux';
 import { getCookie } from './utils/cookie';
 import AuthService from './api/v1/auth';
+import AppLayout from './layouts/app';
+import DefaultLayout from './layouts/default';
 
 // NOTE: performance optimization
 const HonePage = React.lazy(() => import('./pages/index'));
@@ -22,7 +30,7 @@ const LogoutPage = React.lazy(() => import('./pages/logout/index'));
 const Router = () => {
   const token = getCookie('token');
 
-  const router = createBrowserRouter([
+  const router = [
     // top level routes
     {
       path: '/',
@@ -48,14 +56,14 @@ const Router = () => {
         </Suspense>
       ),
     },
-    {
-      path: '*',
-      element: (
-        <Suspense>
-          <Error404Page />
-        </Suspense>
-      ),
-    },
+    // {
+    //   path: '*',
+    //   element: (
+    //     <Suspense>
+    //       <Error404Page />
+    //     </Suspense>
+    //   ),
+    // },
 
     // auth routes
     {
@@ -116,7 +124,7 @@ const Router = () => {
       path: '/app/settings',
       element: <Suspense>{token ? <AppSettingsPage /> : <LoginPage />}</Suspense>,
     },
-  ]);
+  ];
 
   const noAuth = ['/login', '/register', '/forgot-password', '/reset-password', '/logout'];
   const path = window.location.pathname;
@@ -125,7 +133,31 @@ const Router = () => {
     window.location.href = '/app';
   }
 
-  return <RouterProvider router={router} />;
+  interface LayoutSwitcherProps {
+    children: React.ReactNode;
+  }
+
+  const LayoutSwitcher = ({ children }: LayoutSwitcherProps) => {
+    const token = getCookie('token');
+
+    if (token) {
+      return <AppLayout>{children}</AppLayout>;
+    } else {
+      return <DefaultLayout>{children}</DefaultLayout>;
+    }
+  };
+
+  return (
+    <BrowserRouter>
+      <LayoutSwitcher>
+        <Routes>
+          {router.map((route, i) => (
+            <Route key={i} path={route.path} element={route.element} />
+          ))}
+        </Routes>
+      </LayoutSwitcher>
+    </BrowserRouter>
+  );
 };
 
 export default Router;

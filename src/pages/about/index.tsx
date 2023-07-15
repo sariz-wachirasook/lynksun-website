@@ -2,11 +2,7 @@ import { type FC } from 'react';
 import DefaultLayout from '../../layouts/default';
 
 const About: FC = () => {
-  return (
-    <DefaultLayout>
-      <h1>About</h1>
-    </DefaultLayout>
-  );
+  return <h1>About</h1>;
 };
 
 export default About;

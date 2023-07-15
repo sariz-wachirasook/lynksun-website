@@ -1,8 +1,9 @@
-import { type FC } from 'react';
+import { useState, type FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 const Aside: FC = () => {
+  const [currentPath, setCurrentPath] = useState('');
   const { t } = useTranslation();
 
   const routes = [
@@ -31,7 +32,13 @@ const Aside: FC = () => {
     },
   ];
 
-  const currentPath = window.location.pathname;
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
+
+  const handleSetCurrentPath = (path: string) => {
+    setCurrentPath(path);
+  };
 
   return (
     <>
@@ -52,16 +59,12 @@ const Aside: FC = () => {
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 flex flex-col">
-          <div>
-            <h2>{t('lynksun')}</h2>
-          </div>
-
-          <hr className="my-4 dark:border-gray-700" />
           <ul className="space-y-2 font-medium mt-auto sm:m-0">
             {routes.map((route) => (
               <li key={route.path}>
                 <Link
                   to={route.path}
+                  onClick={() => handleSetCurrentPath(route.path)}
                   className={`flex items-center p-2 h5 font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
                     route.path === currentPath ? 'bg-gray-100 dark:bg-gray-700' : ''
                   }`}
@@ -78,6 +81,7 @@ const Aside: FC = () => {
               <li key={route.path}>
                 <Link
                   to={route.path}
+                  onClick={() => handleSetCurrentPath(route.path)}
                   className={`flex items-center h5 font-normal p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
                     route.path === currentPath ? 'bg-gray-100 dark:bg-gray-700' : ''
                   }`}

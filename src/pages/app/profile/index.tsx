@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import Button from '../../../components/button';
 import AuthService from '../../../api/v1/auth';
 import { setUser } from '../../../store/auth';
-import { redirect } from 'react-router-dom';
 import { deleteCookie } from '../../../utils/cookie';
 
 const AppProfilePage: FC = () => {
@@ -55,7 +54,7 @@ const AppProfilePage: FC = () => {
   };
 
   return (
-    <AppLayout>
+    <section>
       <Card>
         <h1 className="mb-5">{t('profile')}</h1>
         <hr className="my-5" />
@@ -76,6 +75,14 @@ const AppProfilePage: FC = () => {
 
         <h3 className="mb-5">{t('change-password')}</h3>
         <form onSubmit={handleSubmitUpdatePassword} className="js-form-update-password">
+          <input
+            type="text"
+            name="email"
+            autoComplete="username email"
+            style={{ display: 'none' }}
+            defaultValue={user?.email}
+          />
+
           <Text
             label={t('old-password')}
             placeholder={t('old-password')}
@@ -110,6 +117,14 @@ const AppProfilePage: FC = () => {
 
         <h3 className="mb-5">{t('delete-account')}</h3>
         <form onSubmit={handleSubmitDeleteAccount}>
+          <input
+            type="text"
+            name="email"
+            autoComplete="username email"
+            style={{ display: 'none' }}
+            defaultValue={user?.email}
+          />
+
           <Text
             label={t('password')}
             placeholder={t('password')}
@@ -122,7 +137,7 @@ const AppProfilePage: FC = () => {
           <Button type="submit" label={t('delete')} buttonType="danger" />
         </form>
       </Card>
-    </AppLayout>
+    </section>
   );
 };
 

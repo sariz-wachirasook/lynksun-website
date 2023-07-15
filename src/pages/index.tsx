@@ -61,7 +61,7 @@ const Page: FC = () => {
 
   // render
   return (
-    <DefaultLayout>
+    <>
       {/* header */}
       <section>
         <div className="text-center mb-5 mt-5">
@@ -75,13 +75,17 @@ const Page: FC = () => {
         <Card className="mx-auto w-full max-w-xl p-5 mb-5">
           <h2 className="text-center mb-5">{t('shorten-your-link')}</h2>
           <form onSubmit={handleSubmit}>
-            <Input name="url" label="Enter The URL" placeholder="Enter The URL" required />
+            <Input
+              name="url"
+              label={t('enter-the-url')}
+              placeholder={t('enter-the-url')}
+              required
+            />
 
             <Button type="submit" label={t('submit')} className="mb-5" />
             <p>
               {t('any-link-will-expires-in-24hr-consider-to')}{' '}
-              <a href="/register">{t('register')}</a>{' '}
-              {t('to-get-unlimited-link-expires-time')}
+              <a href="/register">{t('register')}</a> {t('to-get-unlimited-link-expires-time')}
             </p>
           </form>
         </Card>
@@ -132,7 +136,7 @@ const Page: FC = () => {
           </Card>
         )}
       </section>
-    </DefaultLayout>
+    </>
   );
 };
 
