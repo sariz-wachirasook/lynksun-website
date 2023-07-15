@@ -4,6 +4,7 @@ import { deleteCookie, getCookie } from './utils/cookie';
 import AuthService from './api/v1/auth';
 import { setUser } from './store/auth';
 import { ToastContainer } from 'react-toastify';
+import ReactGA from 'react-ga';
 
 function mapStateToProps(state: any) {
   return {
@@ -29,6 +30,10 @@ class App extends React.Component<Props> {
   }
 
   componentDidMount(): void {
+    // Google Analytics
+    ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
     const token = getCookie('token');
     if (token && !this.props.user) {
       this.fetchUser();
