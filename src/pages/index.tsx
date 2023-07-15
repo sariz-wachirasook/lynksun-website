@@ -1,15 +1,16 @@
 import 'flowbite';
-import { useState, type FC } from 'react';
+import { FormEvent, lazy, useState, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import LinkService from '../api/v1/link';
-import Badge from '../components/badge';
 import Button from '../components/button';
 import Card from '../components/card';
 import Input from '../components/input/input';
 import { LinkType } from '../interfaces/link';
 import { getCookie } from '../utils/cookie';
-import { formatDateTime } from '../utils/date';
+
+const Badge = lazy(() => import('../components/badge'));
+const Datetime = lazy(() => import('../components/datetime'));
 
 const Page: FC = () => {
   // state
@@ -33,7 +34,7 @@ const Page: FC = () => {
   }
 
   // function
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -129,7 +130,9 @@ const Page: FC = () => {
               </div>
               <p>
                 {t('your-link-will-be-expired-at')}
-                <Badge className="ml-2">{formatDateTime(link.expires_at as string)}</Badge>
+                <Badge className="ml-2">
+                  <Datetime datetimeString={link.expires_at as string} />
+                </Badge>
               </p>
             </div>
           </Card>

@@ -1,12 +1,14 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, lazy, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import LinkAnalyticsService from '../../api/v1/link-analytics';
-import Badge from '../../components/badge';
 import Card from '../../components/card';
 import VerticalBar from '../../components/chart/vertical-bar';
 import { LinksType } from '../../interfaces/link';
+
+// lazy load
+const Badge = lazy(() => import('../../components/badge'));
 
 const AppPage: FC = () => {
   const [mostVisited, setMostVisited] = useState<LinksType>();
