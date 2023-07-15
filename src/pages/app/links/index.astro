@@ -1,5 +1,6 @@
 ---
 import AppLayout from '../../../layouts/app';
+import Footer from '../../../layouts/footer.astro';
 import Head from '../../../layouts/head.astro';
 import AppLinksPage from './index.tsx';
 ---
@@ -10,5 +11,6 @@ import AppLinksPage from './index.tsx';
         <AppLayout client:only>
             <AppLinksPage client:only />
         </AppLayout>
+        <Footer />
     </body>
 </html>

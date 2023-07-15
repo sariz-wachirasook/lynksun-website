@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '../layouts/default';
+import Footer from '../layouts/footer.astro';
 import Head from '../layouts/head.astro';
 import Page from './index.tsx';
 ---
@@ -10,5 +11,6 @@ import Page from './index.tsx';
         <DefaultLayout client:only>
             <Page client:only />
         </DefaultLayout>
+        <Footer />
     </body>
 </html>
