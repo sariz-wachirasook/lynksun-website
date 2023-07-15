@@ -11,6 +11,8 @@ import Text from '../../../components/input/input';
 import SearchInput from '../../../components/input/search';
 import { LinkType, LinksType } from '../../../interfaces/link';
 import { formatDateTime } from '../../../utils/date';
+import CardSkeleton from '../../../components/skeleton/card';
+import CardImageSkeleton from '../../../components/skeleton/card-image';
 
 const AppLinksPage: FC = () => {
   const [links, setLinks] = useState<LinksType | undefined>();
@@ -153,6 +155,20 @@ const AppLinksPage: FC = () => {
           </form>
 
           <ul className="grid gap-4 max-h-[80vh] md:overflow-y-auto overflow-x-auto">
+            {loading && (
+              <>
+                <li>
+                  <CardSkeleton />
+                </li>
+                <li>
+                  <CardSkeleton />
+                </li>
+                <li>
+                  <CardSkeleton />
+                </li>
+              </>
+            )}
+
             {links?.data.map((linkDetail) => (
               <li className="min-w-0" key={linkDetail.id}>
                 <Card
@@ -204,7 +220,11 @@ const AppLinksPage: FC = () => {
         </div>
 
         <div>
-          {loading && <p>{t('loading')}...</p>}
+          {loading && (
+            <>
+              <CardImageSkeleton />
+            </>
+          )}
           {!loading && link && (
             <>
               <Card className="mb-4">
