@@ -42,7 +42,7 @@ class BaseService {
   private async request<T>(path: string, method: string, params?: any): Promise<T> {
     const apiOptions = {
       baseURL: this.API_BASE_URL,
-      timeout: 1000,
+      timeout: 30000,
       headers: {
         Accept: this.ACCEPT,
         Authorization: `Bearer ${this.TOKEN}`,
