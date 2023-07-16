@@ -4,6 +4,7 @@ import Auth from '../../api/v1/auth';
 import Button from '../../components/button';
 import Text from '../../components/input/input';
 import { setCookie } from '../../utils/cookie';
+import Card from '../../components/card';
 
 const LoginPage: FC = () => {
   const { t } = useTranslation();
@@ -40,10 +41,8 @@ const LoginPage: FC = () => {
           {t('lynksun')}
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              {t('sign-in-to-your-account')}
-            </h1>
+          <Card>
+            <h1 className="h2 mb-4">{t('sign-in-to-your-account')}</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
               <Text
                 type="email"
@@ -99,7 +98,7 @@ const LoginPage: FC = () => {
                 </a>
               </p>
             </form>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

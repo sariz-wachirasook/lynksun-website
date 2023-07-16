@@ -77,5 +77,7 @@
   "visits": "Visits",
   "we-sent-email-to": "We sent email to",
   "your-link-is-ready": "Your link is ready",
-  "your-link-will-be-expired-at": "Your link will be expired at"
+  "your-link-will-be-expired-at": "Your link will be expired at",
+  "404": "404, Oh no...",
+  "404-message": "The page you are looking for might have been removed had its name changed or is temporarily unavailable."
 }
