@@ -27,14 +27,14 @@ const Navbar: FC = () => {
   ];
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="bg-primary border-gray-200 dark:bg-gray-900">
       <div
         className={`${
           token ? '' : 'max-w-screen-xl'
         } flex flex-wrap items-center justify-between mx-auto p-4`}
       >
         <a href={token ? '/app/links' : '/'} className="flex items-center">
-          <img src="/black-logo.svg" alt="logo" className="w-[176px] h-[55px]" />
+          <img src="/white-logo.svg" alt="logo" className="w-[176px] h-[55px]" />
         </a>
         <button
           data-collapse-toggle="navbar-default"
@@ -61,13 +61,13 @@ const Navbar: FC = () => {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:gap-5 gap-2.5 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {!token &&
               routes.map((route) => (
-                <li key={route.name} className="flex items-center">
+                <li key={route.name} className="flex items-center w-full">
                   <a
                     href={route.path}
-                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    className="whitespace-nowrap w-full block py-2 pl-3 pr-4 text-white rounded hover:bg-secondary md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
                     {route.name}
                   </a>
@@ -75,7 +75,7 @@ const Navbar: FC = () => {
               ))}
             {token && (
               <li className="flex items-center">
-                <h5>@{$user?.name}</h5>
+                <h5 className='text-white'>@{$user?.name}</h5>
               </li>
             )}
             <li className="flex items-center">

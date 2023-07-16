@@ -5,6 +5,6 @@ body,
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  @apply bg-gray-50 dark:bg-gray-900;
+  font-family: 'Open Sans', sans-serif;
+  @apply bg-white dark:bg-primary text-primary dark:text-white;
 }
