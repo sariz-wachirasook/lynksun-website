@@ -2,14 +2,14 @@ import { FC, lazy, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import LinkAnalyticsService from '../../api/v1/link-analytics';
-import Card from '../../components/card';
-import VerticalBar from '../../components/chart/vertical-bar';
+import Card from '../../components/Card';
+import VerticalBar from '../../components/chart/VerticalBarChart';
 import { LinksType } from '../../interfaces/link';
-import CardSkeleton from '../../components/skeleton/card';
-import CardBar from '../../components/skeleton/card-bar';
+import CardSkeleton from '../../components/skeleton/CardSkeleton';
+import CardBar from '../../components/skeleton/CardBarSkeleton';
 
 // lazy load
-const Badge = lazy(() => import('../../components/badge'));
+const Badge = lazy(() => import('../../components/Badge'));
 
 const AppPage: FC = () => {
   const [user, setUser] = useState<any>();

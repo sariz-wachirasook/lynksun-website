@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/button';
-import Text from '../../components/input/input';
+import Button from '../../components/Button';
+import Text from '../../components/input/TextInput';
 
-const ResetPassword: FC = () => {
+const ResetPasswordPage: FC = () => {
   const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,4 +54,4 @@ const ResetPassword: FC = () => {
   );
 };
 
-export default ResetPassword;
+export default ResetPasswordPage;

@@ -2,15 +2,14 @@ import { FormEvent, lazy, useState, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import LinkService from '../api/v1/link';
-import Button from '../components/button';
-import Card from '../components/card';
-import Input from '../components/input/input';
+import Button from '../components/Button';
+import Card from '../components/Card';
+import Input from '../components/input/TextInput';
 import { LinkType } from '../interfaces/link';
 import { getCookie } from '../utils/cookie';
-import DefaultLayout from '../layouts/default';
 
-const Badge = lazy(() => import('../components/badge'));
-const Datetime = lazy(() => import('../components/datetime'));
+const Badge = lazy(() => import('../components/Badge'));
+const Datetime = lazy(() => import('../components/Datetime'));
 
 const Page: FC = () => {
   // state
@@ -61,7 +60,7 @@ const Page: FC = () => {
 
   // render
   return (
-    <DefaultLayout>
+    <>
       {/* header */}
       <section>
         <div className="text-center mb-5 mt-5">
@@ -138,7 +137,7 @@ const Page: FC = () => {
           </Card>
         )}
       </section>
-    </DefaultLayout>
+    </>
   );
 };
 

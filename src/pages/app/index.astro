@@ -1,16 +1,9 @@
 ---
-import AppLayout from '../../layouts/app';
-import Footer from '../../layouts/footer.astro';
-import Head from '../../layouts/head.astro';
-import Page from './index.tsx';
+// @ts-ignore
+import AppLayout from '/src/layouts/AppLayout.astro';
+import Page from './index';
 ---
 
-<html lang="en">
-    <Head title="Dashboard" />
-    <body>
-        <AppLayout client:only>
-            <Page client:only />
-        </AppLayout>
-        <Footer />
-    </body>
-</html>
+<AppLayout>
+    <Page client:only />
+</AppLayout>

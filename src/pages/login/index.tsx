@@ -1,10 +1,10 @@
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Auth from '../../api/v1/auth';
-import Button from '../../components/button';
-import Text from '../../components/input/input';
+import Button from '../../components/Button';
+import Text from '../../components/input/TextInput';
 import { setCookie } from '../../utils/cookie';
-import Card from '../../components/card';
+import Card from '../../components/Card';
 
 const LoginPage: FC = () => {
   const { t } = useTranslation();

@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import AuthService from '../../../api/v1/auth';
-import Button from '../../../components/button';
-import Card from '../../../components/card';
-import Text from '../../../components/input/input';
+import Button from '../../../components/Button';
+import Card from '../../../components/Card';
+import Text from '../../../components/input/TextInput';
 import { deleteCookie, getCookie } from '../../../utils/cookie';
 import { user } from '../../../store/user';
 import { useStore } from '@nanostores/react';

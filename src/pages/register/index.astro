@@ -1,19 +1,9 @@
 ---
-import DefaultLayout from '../../layouts/default';
-import Footer from '../../layouts/footer.astro';
-import Head from '../../layouts/head.astro';
-import Page from './index.tsx';
+// @ts-ignore
+import DefaultLayout from '/src/layouts/DefaultLayout.astro';
+import Page from './index';
 ---
 
-<html lang="en">
-    <Head
-        title="Register"
-        description="Create an account at Lynksun to get access to short link generation, tools and analytics."
-    />
-    <body>
-        <DefaultLayout client:only>
-            <Page client:only />
-        </DefaultLayout>
-        <Footer />
-    </body>
-</html>
+<DefaultLayout>
+    <Page client:only />
+</DefaultLayout>

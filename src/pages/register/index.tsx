@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import Auth from '../../api/v1/auth';
-import Button from '../../components/button';
-import Text from '../../components/input/input';
+import Button from '../../components/Button';
+import Text from '../../components/input/TextInput';
 import { setCookie } from '../../utils/cookie';
-import Card from '../../components/card';
+import Card from '../../components/Card';
 
-const Register: FC = () => {
+const RegisterPage: FC = () => {
   const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -107,4 +107,4 @@ const Register: FC = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

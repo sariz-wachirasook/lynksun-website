@@ -1,9 +1,8 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/button';
-import Card from '../../components/card';
-import Text from '../../components/input/input';
-import DefaultLayout from '../../layouts/default';
+import Button from '../../components/Button';
+import Card from '../../components/Card';
+import Text from '../../components/input/TextInput';
 
 const ForgotPasswordPage: FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -38,7 +37,7 @@ const ForgotPasswordPage: FC = () => {
 
   const { t } = useTranslation();
   return (
-    <DefaultLayout>
+    <>
       <section>
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-[80vh] lg:py-0">
           <a href="/" className="h1 mb-4">
@@ -95,7 +94,7 @@ const ForgotPasswordPage: FC = () => {
           )}
         </div>
       </section>
-    </DefaultLayout>
+    </>
   );
 };
 

@@ -3,8 +3,8 @@ if (!token) {
   window.location.href = '/login';
 }
 
-import Navbar from '../components/layouts/navbar';
-import Aside from '../components/layouts/aside';
+import Navbar from '../components/layouts/Navbar';
+import Aside from '../components/layouts/Aside';
 import { useEffect } from 'react';
 
 import '../utils/i18n';

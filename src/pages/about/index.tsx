@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 
-const About: FC = () => {
-  return <h1>About</h1>;
+const AboutPage: FC = () => {
+  return <h1>AboutPage</h1>;
 };
 
-export default About;
+export default AboutPage;

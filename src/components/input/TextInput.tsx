@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import Label from './label';
+import Label from './Label';
 
 interface Props {
   name: string;

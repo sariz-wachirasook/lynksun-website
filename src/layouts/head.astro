@@ -1,6 +1,7 @@
 ---
 import '../assets/css/app.css';
 import '../assets/css/tailwind.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { SEO } from 'astro-seo';
 
@@ -62,4 +63,12 @@ const siteName = import.meta.env.PUBLIC_SITE_NAME;
 
     <!-- analytics -->
     <GoogleAnalytics />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    />
 </head>

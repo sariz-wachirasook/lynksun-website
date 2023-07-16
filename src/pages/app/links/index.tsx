@@ -3,16 +3,16 @@ import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import LinkService from '../../../api/v1/link';
-import Badge from '../../../components/badge';
-import Button from '../../../components/button';
-import Card from '../../../components/card';
-import VerticalBar from '../../../components/chart/vertical-bar';
-import Text from '../../../components/input/input';
-import SearchInput from '../../../components/input/search';
+import Badge from '../../../components/Badge';
+import Button from '../../../components/Button';
+import Card from '../../../components/Card';
+import VerticalBar from '../../../components/chart/VerticalBarChart';
+import Text from '../../../components/input/TextInput';
+import SearchInput from '../../../components/input/SearchInput';
 import { LinkType, LinksType } from '../../../interfaces/link';
 import { formatDateTime } from '../../../utils/date';
-import CardSkeleton from '../../../components/skeleton/card';
-import CardImageSkeleton from '../../../components/skeleton/card-image';
+import CardSkeleton from '../../../components/skeleton/CardSkeleton';
+import CardImageSkeleton from '../../../components/skeleton/CardImageSkeleton';
 
 const AppLinksPage: FC = () => {
   const [links, setLinks] = useState<LinksType | undefined>();

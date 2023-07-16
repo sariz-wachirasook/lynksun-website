@@ -3,7 +3,7 @@ import { useState, type FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 // import { Link } from 'react-router-dom';
 import { getCookie } from '../../utils/cookie';
-import LanguageSwitcher from '../language-switcher';
+import LanguageSwitcher from '../LanguageSwitcher';
 import { useStore } from '@nanostores/react';
 import { user } from '../../store/user';
 interface Route {

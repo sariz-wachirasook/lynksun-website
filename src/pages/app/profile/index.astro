@@ -1,16 +1,9 @@
 ---
-import AppProfilePage from '../../../layouts/app';
-import Footer from '../../../layouts/footer.astro';
-import Head from '../../../layouts/head.astro';
-import AppLinksPage from './index.tsx';
+// @ts-ignore
+import AppLayout from '/src/layouts/AppLayout.astro';
+import Page from './index';
 ---
 
-<html lang="en">
-    <Head title="Profile" />
-    <body>
-        <AppProfilePage client:only>
-            <AppLinksPage client:only />
-        </AppProfilePage>
-        <Footer />
-    </body>
-</html>
+<AppLayout>
+    <Page client:only />
+</AppLayout>

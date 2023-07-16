@@ -1,5 +1,5 @@
-import Navbar from '../components/layouts/navbar';
-import Footer from '../components/layouts/footer';
+import Navbar from '../components/layouts/Navbar';
+import Footer from '../components/layouts/Footer';
 import { useEffect } from 'react';
 import { useStore } from '@nanostores/react';
 
