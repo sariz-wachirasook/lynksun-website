@@ -7,6 +7,7 @@ import Card from '../components/card';
 import Input from '../components/input/input';
 import { LinkType } from '../interfaces/link';
 import { getCookie } from '../utils/cookie';
+import DefaultLayout from '../layouts/default';
 
 const Badge = lazy(() => import('../components/badge'));
 const Datetime = lazy(() => import('../components/datetime'));
@@ -60,7 +61,7 @@ const Page: FC = () => {
 
   // render
   return (
-    <>
+    <DefaultLayout>
       {/* header */}
       <section>
         <div className="text-center mb-5 mt-5">
@@ -137,7 +138,7 @@ const Page: FC = () => {
           </Card>
         )}
       </section>
-    </>
+    </DefaultLayout>
   );
 };
 
