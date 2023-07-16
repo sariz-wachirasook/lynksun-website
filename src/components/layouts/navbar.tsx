@@ -61,14 +61,9 @@ const Navbar: FC = () => {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          {token && (
-            <div className="items-center gap-2 hidden md:flex">
-              <p>@{$user?.name}</p>
-            </div>
-          )}
-          {!token && (
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              {routes.map((route) => (
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            {!token &&
+              routes.map((route) => (
                 <li key={route.name} className="flex items-center">
                   <a
                     href={route.path}
@@ -78,11 +73,15 @@ const Navbar: FC = () => {
                   </a>
                 </li>
               ))}
-              <li>
-                <LanguageSwitcher />
+            {token && (
+              <li className="flex items-center">
+                <h5>@{$user?.name}</h5>
               </li>
-            </ul>
-          )}
+            )}
+            <li className="flex items-center">
+              <LanguageSwitcher />
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
