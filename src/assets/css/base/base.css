@@ -6,5 +6,26 @@ body,
 
 body {
   font-family: 'Open Sans', sans-serif;
-  @apply bg-white dark:bg-primary text-primary dark:text-white;
+  /* @apply bg-white dark:bg-primary text-primary dark:text-white; */
+}
+
+[data-theme='light'],
+[data-theme='cupcake'] {
+  .logo-black {
+    display: block;
+  }
+
+  .logo-white {
+    display: none;
+  }
+}
+
+[data-theme='dark'] {
+  .logo-black {
+    display: none;
+  }
+
+  .logo-white {
+    display: block;
+  }
 }

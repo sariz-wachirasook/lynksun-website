@@ -1,18 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/**/**/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    './node_modules/flowbite/**/*.js',
-  ],
+  content: ['./src/**/**/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-    colors: {
-      primary: '#283149',
-      secondary: '#f5793b',
-      white: '#ffffff',
-      dark: '#3a476a',
-      black: '#161b28',
-      orange: '#f79a6b',
+    extend: {
+      boxShadow: {
+        lg: 'var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), 0 2.5px 15px -3px rgb(0 0 0 / 0.1)',
+      },
     },
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  daisyui: {
+    themes: ['cupcake', 'light', 'dark'],
+  },
 };

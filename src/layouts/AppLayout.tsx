@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import '../utils/i18n';
 import { ToastContainer } from 'react-toastify';
 import { user } from '../store/user';
-import { getCookie } from '../utils/cookie';
+import { getCookie, setCookie } from '../utils/cookie';
 import AuthService from '../api/v1/auth';
 
 interface Props {
@@ -19,12 +19,15 @@ interface Props {
 
 const AppLayout = ({ children }: Props) => {
   const token = getCookie('token');
+  const userCookie = getCookie('user') ? JSON.parse(getCookie('user')) : null;
+
+  if (userCookie) {
+    console.log(userCookie);
+    user.set(userCookie);
+  }
 
   useEffect(() => {
     fetchUser();
-    import('flowbite').then((flowbite) => {
-      flowbite.initFlowbite();
-    });
   }, []);
 
   const fetchUser = async () => {
@@ -33,6 +36,10 @@ const AppLayout = ({ children }: Props) => {
         const authService = new AuthService();
         const response = await authService.getMe();
         user.set(response);
+        setCookie({
+          name: 'user',
+          value: JSON.stringify(response),
+        });
       } catch (error) {
         console.log(error);
       }

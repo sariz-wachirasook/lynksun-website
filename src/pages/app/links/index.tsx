@@ -150,12 +150,12 @@ const AppLinksPage: FC = () => {
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr,2fr] gap-4">
-        <div className="lg:px-2">
-          <form className="mb-4" onSubmit={handleSearch}>
+        <div className="md:min-h-[1000px]">
+          <form className="mb-4 lg:p-2" onSubmit={handleSearch}>
             <SearchInput placeholder={t('search')} name="search" />
           </form>
 
-          <ul className="grid gap-4 max-h-[80vh] md:overflow-y-auto overflow-x-auto">
+          <ul className="grid gap-4 max-h-[80vh] md:overflow-y-auto overflow-x-auto lg:p-2">
             {loading && (
               <>
                 <li>
@@ -175,7 +175,7 @@ const AppLinksPage: FC = () => {
                 <li className="min-w-0" key={linkDetail.id}>
                   <Card
                     className={`cursor-pointer ${
-                      linkDetail.id === link?.id ? 'bg-blue-200 dark:bg-blue-800' : ''
+                      linkDetail.id === link?.id ? 'bg-neutral text-neutral-content' : ''
                     }`}
                     onClick={() => handleClickSingleLink(linkDetail.id)}
                   >
@@ -221,94 +221,87 @@ const AppLinksPage: FC = () => {
           </ul>
         </div>
 
-        <div>
-          {linkDetailLoading && (
-            <>
-              <CardImageSkeleton />
-            </>
-          )}
+        <div className='min-w-0'>
+          {linkDetailLoading && <CardImageSkeleton />}
           {!linkDetailLoading && link && (
-            <>
-              <Card className="mb-4">
-                <h3 className="mb-4">{link.name}</h3>
-
-                {/* detail */}
-                <div className="flex flex-wrap gap-4">
-                  <div>
-                    <Card className="w-fit flex flex-col">
-                      <QRCodeCanvas
-                        id="js-qr-code"
-                        value={`${hostname}/${link.short_url}`}
-                        size={200}
-                        className="mb-4"
-                      />
-                      <Button
-                        className="mx-auto mb-2.5"
-                        label={t('download-qr-code')}
-                        onClick={handleDownloadQRCode}
-                      />
-                      <p className="mx-auto">
-                        <i className="fa-solid fa-eye" /> {link.visit_count}
-                      </p>
-                    </Card>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="mb-4">{t('short-url')}</h4>
-                    <div className="grid grid-cols-[1fr,auto] gap-4 mb-4">
-                      <Text
-                        name="url"
-                        className="mb-0"
-                        required
-                        value={link.short_url as string}
-                        disabled
-                        readOnly
-                      />
-
-                      <Button
-                        label={t('copy')}
-                        suffix={<i className="fa-solid fa-copy ml-2"></i>}
-                        onClick={() => handleCopy(`${hostname}/${link.short_url}`)}
-                      />
-                    </div>
-                    <hr className="my-4" />
-                    <form onSubmit={handleSubmit}>
-                      <Text
-                        name="name"
-                        label={t('name')}
-                        defaultValue={link.name as string}
-                        placeholder={t('name')}
-                        required
-                      />
-                      <Text name="url" label={t('update-url')} defaultValue={link.url} required />
-                      <Button type="submit" label={t('submit')} />
-                    </form>
-                    <hr className="my-4" />
-
-                    <small>
-                      {t('created-at')}: {formatDateTime(link.created_at as string)}
-                    </small>
-                    <br />
-                    <small>
-                      {t('updated-at')}: {formatDateTime(link.updated_at as string)}
-                    </small>
-                  </div>
+            <Card className="mb-4 min-w-0">
+              <h3 className="mb-4 truncate text-ellipsis">{link.name}</h3>
+              {/* detail */}
+              <div className="flex flex-wrap gap-4">
+                <div>
+                  <Card className="w-fit flex flex-col">
+                    <QRCodeCanvas
+                      id="js-qr-code"
+                      value={`${hostname}/${link.short_url}`}
+                      size={200}
+                      className="mb-4"
+                    />
+                    <Button
+                      className="mx-auto mb-2.5"
+                      label={t('download-qr-code')}
+                      onClick={handleDownloadQRCode}
+                    />
+                    <p className="mx-auto">
+                      <i className="fa-solid fa-eye" /> {link.visit_count}
+                    </p>
+                  </Card>
                 </div>
-                <hr className="my-4" />
+                <div className="flex-1">
+                  <h4 className="mb-4">{t('short-url')}</h4>
+                  <div className="grid grid-cols-[1fr,auto] gap-4 mb-4">
+                    <Text
+                      name="url"
+                      className="mb-0"
+                      required
+                      value={link.short_url as string}
+                      disabled
+                      readOnly
+                    />
 
-                {/* chart */}
-                <VerticalBar
-                  title={t('visits')}
-                  datasets={[
-                    {
-                      label: t('last-7-days'),
-                      data: visits.map((v) => v.count),
-                      backgroundColor: '#3B82F6',
-                    },
-                  ]}
-                  labels={visits.map((v) => v.date)}
-                />
-              </Card>
-            </>
+                    <Button
+                      label={t('copy')}
+                      suffix={<i className="fa-solid fa-copy ml-2"></i>}
+                      onClick={() => handleCopy(`${hostname}/${link.short_url}`)}
+                    />
+                  </div>
+                  <hr className="my-4" />
+                  <form onSubmit={handleSubmit}>
+                    <Text
+                      name="name"
+                      label={t('name')}
+                      defaultValue={link.name as string}
+                      placeholder={t('name')}
+                      required
+                    />
+                    <Text name="url" label={t('update-url')} defaultValue={link.url} required />
+                    <Button type="submit" label={t('submit')} />
+                  </form>
+                  <hr className="my-4" />
+
+                  <small>
+                    {t('created-at')}: {formatDateTime(link.created_at as string)}
+                  </small>
+                  <br />
+                  <small>
+                    {t('updated-at')}: {formatDateTime(link.updated_at as string)}
+                  </small>
+                </div>
+              </div>
+              <hr className="my-4" />
+
+              {/* chart */}
+              <VerticalBar
+                title={t('visits')}
+                datasets={[
+                  {
+                    label: t('last-7-days'),
+                    data: visits.map((v) => v.count),
+                    backgroundColor: '#3B82F6',
+                  },
+                ]}
+                labels={visits.map((v) => v.date)}
+              />
+            </Card>
           )}
         </div>
       </div>

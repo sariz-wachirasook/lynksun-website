@@ -1,13 +1,14 @@
 import { type FC, type ReactNode } from 'react';
 
 interface Props {
-  label: string;
+  label?: string;
   prefix?: ReactNode;
   suffix?: ReactNode;
   type?: 'button' | 'submit' | 'reset';
   buttonType?: 'default' | 'alternative' | 'danger';
   className?: string;
   onClick?: () => void;
+  children?: ReactNode;
 }
 
 const Button: FC<Props> = ({
@@ -18,12 +19,13 @@ const Button: FC<Props> = ({
   prefix,
   suffix,
   className = '',
+  children,
 }) => {
-  const modifier = buttonType ? `btn--${buttonType}` : '';
+  const modifier = buttonType ? `btn-${buttonType}` : 'btn-primary';
   return (
     <button type={type} className={`btn ${modifier} ${className}`} onClick={onClick}>
       {prefix}
-      {label}
+      {label} {children}
       {suffix}
     </button>
   );

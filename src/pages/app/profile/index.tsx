@@ -4,7 +4,7 @@ import AuthService from '../../../api/v1/auth';
 import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import Text from '../../../components/input/TextInput';
-import { deleteCookie, getCookie } from '../../../utils/cookie';
+import { deleteCookie, getCookie, setCookie } from '../../../utils/cookie';
 import { user } from '../../../store/user';
 import { useStore } from '@nanostores/react';
 
@@ -22,6 +22,10 @@ const AppProfilePage: FC = () => {
     });
 
     user.set(response);
+    setCookie({
+      name: 'user',
+      value: JSON.stringify(response),
+    });
   };
 
   const handleSubmitUpdatePassword = async (event: React.FormEvent<HTMLFormElement>) => {

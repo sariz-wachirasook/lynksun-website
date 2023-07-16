@@ -35,65 +35,47 @@ const Aside: FC = () => {
     setCurrentPath(window.location.pathname);
   }, []);
 
-  const handleSetCurrentPath = (path: string) => {
-    setCurrentPath(path);
-  };
-
   return (
-    <>
-      <button
-        data-drawer-target="default-sidebar"
-        data-drawer-toggle="default-sidebar"
-        aria-controls="default-sidebar"
-        type="button"
-        className="btn btn--alternative fixed -left-3 bottom-5 "
-      >
-        <span className="sr-only">Open sidebar</span>
-        <i className={`fa-solid fa-bars`} />
-      </button>
+    <div className="drawer lg:drawer-open z-10 border-r-2 border-base-300">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col items-center justify-center absolute">
+        {/* Page content here */}
+        <label
+          htmlFor="my-drawer-2"
+          className="btn btn-primary shadow-lg drawer-button lg:hidden fixed bottom-5 left-5"
+        >
+          <i className="fa-solid fa-bars" />
+        </label>
+      </div>
+      <div className="drawer-side">
+        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+        <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content gap-y-2.5">
+          {routes.map((route) => (
+            <li key={route.path}>
+              <a
+                href={route.path}
+                className={`flex justify-between h6 ${route.path === currentPath ? 'active' : ''}`}
+              >
+                <span>{route.name}</span>
+                <i className={`fa-solid fa-${route.icon}`} />
+              </a>
+            </li>
+          ))}
 
-      <aside
-        id="default-sidebar"
-        className="fixed md:sticky sm:relative top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-lg"
-        aria-label="Sidebar"
-      >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800 flex flex-col">
-          <ul className="space-y-2 font-medium mt-auto sm:m-0">
-            {routes.map((route) => (
-              <li key={route.path}>
-                <a
-                  href={route.path}
-                  onClick={() => handleSetCurrentPath(route.path)}
-                  className={`flex items-center p-2 h5 font-normal  rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-700 group ${
-                    route.path === currentPath ? 'bg-gray-100 dark:bg-gray-700' : ''
-                  }`}
-                >
-                  <i className={`fa-solid text-secondary fa-${route.icon}`} />
-                  <span className="ml-3">{route.name}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-          <hr className="my-4 dark:border-gray-700" />
-          <ul className="space-y-2 font-medium sm:m-0">
-            {subRoutes.map((route) => (
-              <li key={route.path}>
-                <a
-                  href={route.path}
-                  onClick={() => handleSetCurrentPath(route.path)}
-                  className={`flex items-center h5 font-normal p-2  rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-700 group ${
-                    route.path === currentPath ? 'bg-gray-100 dark:bg-gray-700' : ''
-                  }`}
-                >
-                  <i className={`fa-solid text-secondary fa-${route.icon}`} />
-                  <span className="ml-3">{route.name}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </aside>
-    </>
+          {subRoutes.map((route) => (
+            <li key={route.path}>
+              <a
+                href={route.path}
+                className={`flex justify-between h6 ${route.path === currentPath ? 'active' : ''}`}
+              >
+                <span>{route.name}</span>
+                <i className={`fa-solid fa-${route.icon}`} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 

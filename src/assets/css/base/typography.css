@@ -30,5 +30,5 @@ h6,
 
 p,
 .p {
-  @apply text-base text-gray-700 dark:text-gray-300;
+  @apply text-base;
 }

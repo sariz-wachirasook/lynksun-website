@@ -18,9 +18,6 @@ const DefaultLayout = ({ children }: Props) => {
   const token = getCookie('token');
 
   useEffect(() => {
-    import('flowbite').then((flowbite) => {
-      flowbite.initFlowbite();
-    });
     fetchUser();
   }, []);
 
@@ -44,7 +41,7 @@ const DefaultLayout = ({ children }: Props) => {
       <main className="max-w-screen-xl mx-auto p-[1rem] min-h-[80vh]">{children}</main>
 
       {/* footer */}
-      <Footer />
+      {/* <Footer /> */}
 
       <ToastContainer />
     </>

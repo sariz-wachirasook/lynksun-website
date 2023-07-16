@@ -56,6 +56,7 @@ const Page: FC = () => {
   const handleCopy = () => {
     const hostname = window.location.origin;
     navigator.clipboard.writeText(`${hostname}/${link.short_url}`);
+    toast.success(t('copied'));
   };
 
   // render
@@ -71,7 +72,7 @@ const Page: FC = () => {
 
       {/* form */}
       <section>
-        <Card className="mx-auto w-full max-w-xl p-5 mb-5">
+        <Card className="mx-auto w-full max-w-xl mb-5">
           <h2 className="text-center mb-5">{t('shorten-your-link')}</h2>
           <form onSubmit={handleSubmit}>
             <Input
@@ -80,8 +81,10 @@ const Page: FC = () => {
               placeholder={t('enter-the-url')}
               required
             />
-
-            <Button type="submit" label={t('submit')} className="mb-5" />
+            <Button type="submit" className="mb-2.5">
+              {loading && <span className="loading loading-spinner"></span>}
+              {t('submit')}
+            </Button>
             <p>
               {t('any-link-will-expires-in-24hr-consider-to')}{' '}
               <a href="/register">{t('register')}</a> {t('to-get-unlimited-link-expires-time')}

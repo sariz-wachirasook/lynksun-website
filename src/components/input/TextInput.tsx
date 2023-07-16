@@ -8,7 +8,7 @@ interface Props {
   placeholder?: string;
   required?: boolean;
   className?: string;
-  type?: 'text' | 'email' | 'password' | 'hidden';
+  type?: 'text' | 'email' | 'password' | 'hidden' | 'search';
   maxLength?: number;
   defaultValue?: string;
   value?: string;
@@ -16,10 +16,11 @@ interface Props {
   autoComplete?: string;
   pattern?: string;
   readOnly?: boolean;
+  id?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Text: FC<Props> = ({
+const TextInput: FC<Props> = ({
   name,
   label,
   placeholder,
@@ -33,13 +34,14 @@ const Text: FC<Props> = ({
   autoComplete,
   pattern,
   readOnly = false,
+  id,
   onChange,
 }) => {
   return (
     <div className={`${label ? 'mb-4' : ''} ${className}`}>
       {label && <Label label={label} name={name} required={required} />}
       <input
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className={`input input-bordered w-full ${type === 'search' ? 'pl-12' : ''}`}
         type={type}
         name={name}
         id={name}
@@ -53,10 +55,11 @@ const Text: FC<Props> = ({
         {...(disabled && { readOnly: true })}
         {...(readOnly && !disabled && { readOnly: true })}
         {...(value && { value })}
+        {...(id && { id })}
         onChange={onChange}
       />
     </div>
   );
 };
 
-export default Text;
+export default TextInput;
