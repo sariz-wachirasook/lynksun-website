@@ -7,6 +7,7 @@
   "change-password": "Change password",
   "confirm-new-password": "Confirm new password",
   "confirm-password": "Confirm Password",
+  "copied": "Copied",
   "copy": "Copy",
   "create-an-account": "Create an account",
   "create-new-link": "Create new link",
@@ -35,6 +36,7 @@
   "loading": "Loading",
   "login": "Login",
   "login-here": "Login here",
+  "logout": "Logout",
   "lynksun": "Lynksun",
   "most-visited-links": "Most visited links",
   "name": "Name",
@@ -75,6 +77,5 @@
   "visits": "Visits",
   "we-sent-email-to": "We sent email to",
   "your-link-is-ready": "Your link is ready",
-  "your-link-will-be-expired-at": "Your link will be expired at",
-  "logout": "Logout"
+  "your-link-will-be-expired-at": "Your link will be expired at"
 }

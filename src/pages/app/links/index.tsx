@@ -198,9 +198,6 @@ const AppLinksPage: FC = () => {
                           </span>
                         </Badge>
                       </p>
-                      <p>
-                        {t('total-visits')}: {linkDetail.visit_count}
-                      </p>
                       <p className="flex flex-nowrap gap-2 items-center">
                         <span className="whitespace-nowrap"> {t('original-url')}:</span>
                         <Badge
@@ -213,6 +210,9 @@ const AppLinksPage: FC = () => {
                           <i className="fa-solid fa-copy mr-2"></i>
                           <span>{linkDetail.url}</span>
                         </Badge>
+                      </p>
+                      <p>
+                        <i className="fa-solid fa-eye" /> {linkDetail.visit_count}
                       </p>
                     </div>
                   </Card>
@@ -248,7 +248,7 @@ const AppLinksPage: FC = () => {
                         onClick={handleDownloadQRCode}
                       />
                       <p className="mx-auto">
-                        {t('total-visits')}: {link.visit_count}
+                        <i className="fa-solid fa-eye" /> {link.visit_count}
                       </p>
                     </Card>
                   </div>

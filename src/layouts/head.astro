@@ -1,7 +1,14 @@
 ---
 import '../assets/css/app.css';
 import '../assets/css/tailwind.css';
+
+import { SEO } from 'astro-seo';
+
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+
+const { title = 'Short Your Link', description = 'shorten your links with lynksun' } = Astro.props;
+const separator = ' | ';
+const siteName = import.meta.env.PUBLIC_SITE_NAME;
 ---
 
 <head>
@@ -28,8 +35,27 @@ import GoogleAnalytics from '../components/GoogleAnalytics.astro';
     <meta name="theme-color" content="#ffffff" />
 
     <!-- meta -->
-    <title>Lynksun - shorten your links</title>
-    <meta name="description" content="shorten your links with lynksun" />
+    <SEO
+        title={title + separator + siteName}
+        description={description}
+        openGraph={{
+            basic: {
+                title: title + separator + siteName,
+                type: 'A type.',
+                image: '/og-image.jpg',
+            },
+            optional: {
+                description: description,
+            },
+        }}
+        twitter={{
+            image: '/og-image.jpg',
+            card: 'summary_large_image',
+            title: title + separator + siteName,
+            description: description,
+            imageAlt: 'Logo with a service',
+        }}
+    />
 
     <!-- script -->
     <script src="https://kit.fontawesome.com/49d34c1588.js" crossorigin="anonymous"></script>

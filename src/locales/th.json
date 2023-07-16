@@ -7,6 +7,7 @@
   "change-password": "เปลี่ยนรหัสผ่าน",
   "confirm-new-password": "ยืนยันรหัสผ่านใหม่",
   "confirm-password": "ยืนยันรหัสผ่าน",
+  "copied": "คัดลอกแล้ว",
   "copy": "คัดลอก",
   "create-an-account": "สร้างบัญชีผู้ใช้",
   "create-new-link": "สร้างลิงค์ใหม่",
@@ -35,6 +36,7 @@
   "loading": "กำลังโหลด",
   "login": "เข้าสู่ระบบ",
   "login-here": "เข้าสู่ระบบที่นี่",
+  "logout": "ออกจากระบบ",
   "lynksun": "ลิงค์สั้น",
   "most-visited-links": "ลิงค์ที่ได้รับการเข้าชมมากที่สุด",
   "name": "ชื่อ",
@@ -75,6 +77,5 @@
   "visits": "จำนวนการกด",
   "we-sent-email-to": "เราได้ส่งอีเมลไปยัง",
   "your-link-is-ready": "ลิงค์ของคุณพร้อมแล้ว",
-  "your-link-will-be-expired-at": "ลิงค์ของคุณจะหมดอายุเมื่อ",
-  "logout": "ออกจากระบบ"
+  "your-link-will-be-expired-at": "ลิงค์ของคุณจะหมดอายุเมื่อ"
 }
