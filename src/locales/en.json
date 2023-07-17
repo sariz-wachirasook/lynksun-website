@@ -82,5 +82,14 @@
   "404-message": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
   "cupcake": "Cupcake",
   "light": "Light",
-  "dark": "Dark"
+  "dark": "Dark",
+  "spring": "Spring",
+  "summer": "Summer",
+  "autumn": "Autumn",
+  "winter": "Winter",
+  "fill-the-link-you-want-to-shorten": "Fill the link you want to shorten",
+  "freemium": "Freemium",
+  "freemium-description": "Free to use, but link will be expired in 24 hours",
+  "fast": "Fast",
+  "fast-description": "Fastest way to shorten your link"
 }

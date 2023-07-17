@@ -36,7 +36,7 @@ const Aside: FC = () => {
   }, []);
 
   return (
-    <div className="drawer lg:drawer-open z-10 border-r-2 border-base-300">
+    <div className="drawer lg:drawer-open z-10 border-r border-base-300">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center absolute">
         {/* Page content here */}
@@ -49,7 +49,7 @@ const Aside: FC = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content gap-y-2.5">
+        <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content gap-y-2">
           {routes.map((route) => (
             <li key={route.path}>
               <a

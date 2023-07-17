@@ -8,7 +8,7 @@ interface Props {
 
 const Card: FC<Props> = ({ children, className = '', onClick }) => {
   return (
-    <div className={`card w-full bg-base-100 shadow-lg border-2 border-base-300 ${className}`} onClick={onClick}>
+    <div className={`card w-full bg-base-100 shadow-lg border border-base-300 ${className}`} onClick={onClick}>
       <div className="card-body">{children}</div>
     </div>
   );

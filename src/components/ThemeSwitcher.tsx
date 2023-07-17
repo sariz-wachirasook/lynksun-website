@@ -14,8 +14,8 @@ const ThemeSwitcher: FC = () => {
 
   const themes: ThemeType[] = [
     {
-      theme: 'cupcake',
-      icon: 'mug-hot',
+      theme: 'autumn',
+      icon: 'wheat-awn',
     },
     {
       theme: 'light',
@@ -68,14 +68,14 @@ const ThemeSwitcher: FC = () => {
       </label>
       <ul
         tabIndex={0}
-        className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52"
+        className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 gap-y-2"
       >
         {themes.map((theme, index) => (
           <li key={index}>
             <button
               type="button"
               onClick={() => handleChangeTheme(theme)}
-              className="flex items-center justify-between w-full"
+              className={`flex items-center justify-between w-full ${currentTheme?.theme === theme.theme ? 'active' : ''}`}
             >
               <span>{t(`${theme.theme}`)}</span>
               <i className="fa-solid fa-cupcake"></i>

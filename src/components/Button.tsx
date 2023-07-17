@@ -5,7 +5,7 @@ interface Props {
   prefix?: ReactNode;
   suffix?: ReactNode;
   type?: 'button' | 'submit' | 'reset';
-  buttonType?: 'default' | 'alternative' | 'danger';
+  buttonType?: 'default' | 'alternative' | 'error';
   className?: string;
   onClick?: () => void;
   children?: ReactNode;

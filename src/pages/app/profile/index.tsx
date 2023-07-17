@@ -136,7 +136,7 @@ const AppProfilePage: FC = () => {
             autoComplete="current-password"
           />
 
-          <Button type="submit" label={t('delete')} buttonType="danger" />
+          <Button type="submit" label={t('delete')} buttonType="error" />
         </form>
       </Card>
     </section>

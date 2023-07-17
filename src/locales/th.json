@@ -37,7 +37,7 @@
   "login": "เข้าสู่ระบบ",
   "login-here": "เข้าสู่ระบบที่นี่",
   "logout": "ออกจากระบบ",
-  "lynksun": "ลิงค์สั้น",
+  "lynksun": "ลิงค์สั้นดอทคอม",
   "most-visited-links": "ลิงค์ที่ได้รับการเข้าชมมากที่สุด",
   "name": "ชื่อ",
   "name-company.com": "ชื่อ-บริษัท.com",
@@ -48,7 +48,7 @@
   "password": "รหัสผ่าน",
   "please-check-your-email-to-reset-password": "กรุณาตรวจสอบอีเมลเพื่อรีเซ็ตรหัสผ่าน",
   "profile": "โปรไฟล์",
-  "register": "ลงทะเบียน",
+  "register": "สมัครสมาชิก",
   "remember-me": "จดจำฉันไว้",
   "request-timeout": "Request timeout",
   "resend-email": "ส่งอีเมลอีกครั้ง",
@@ -57,7 +57,7 @@
   "send-email": "ส่งอีเมล",
   "settings": "ตั้งค่า",
   "short-url": "ลิงค์สั้น",
-  "shorten-your-link": "สร้างลิงค์สั้น",
+  "shorten-your-link": "ย่อลิงค์ของคุณให้สั้นลง",
   "sign-in": "เข้าสู่ระบบ",
   "sign-in-to-your-account": "เข้าสู่ระบบบัญชีผู้ใช้ของคุณ",
   "sign-up": "สมัครสมาชิก",
@@ -82,5 +82,10 @@
   "404-message": "เราไม่พบหน้าที่คุณต้องการ, มันน่าจะอยู่แถวๆ นี้นะ",
   "cupcake": "คัพเค้ก",
   "light": "สว่าง",
-  "dark": "มืด"
+  "dark": "มืด",
+  "spring": "ฤดูใบไม้ผลิ",
+  "summer": "ฤดูร้อน",
+  "autumn": "ฤดูใบไม้ร่วง",
+  "winter": "ฤดูหนาว",
+  "fill-the-link-you-want-to-shorten": "กรอก URL ที่ต้องการสร้างลิงค์"
 }

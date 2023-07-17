@@ -6,6 +6,7 @@ import LocaleSwitcher from '../LocaleSwitcher';
 import { useStore } from '@nanostores/react';
 import { user } from '../../store/user';
 import ThemeSwitcher from '../ThemeSwitcher';
+import { formatDateTime, getDate, getDateTime, getSeason, getTime } from '../../utils/date';
 
 interface Route {
   name: string;
@@ -14,9 +15,15 @@ interface Route {
 }
 
 const Navbar: FC = () => {
+  const [now, setNow] = useState(Date());
   const { t } = useTranslation();
   const $user = useStore(user);
   const token = getCookie('token');
+
+  setInterval(() => {
+    setNow(Date());
+  }, 1000);
+
   const routes: Route[] = [
     {
       name: t('login'),
@@ -31,14 +38,20 @@ const Navbar: FC = () => {
   ];
 
   return (
-    <div className="navbar bg-base-100 shadow-lg border-2 border-base-300">
+    <div className="navbar bg-base-100 shadow-lg border border-base-300">
       <div className="navbar-start">
         <a href={token ? '/app/links' : '/'} className="flex items-center">
           <img src="/white-logo.svg" alt="logo" className="w-[176px] h-[55px] logo-white" />
           <img src="/black-logo.svg" alt="logo" className="w-[176px] h-[55px] logo-black" />
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex"></div>
+      <div className="navbar-center hidden lg:flex">
+        <p className="text-center">
+          {getTime(now)}
+          <br />
+          {getDate(now)} {getSeason(now)}
+        </p>
+      </div>
       <div className="navbar-end">
         {!token && (
           <ul className="menu menu-horizontal px-1 hidden md:inline-flex">

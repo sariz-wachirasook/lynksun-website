@@ -10,7 +10,8 @@ body {
 }
 
 [data-theme='light'],
-[data-theme='cupcake'] {
+[data-theme='cupcake'],
+[data-theme='autumn'] {
   .logo-black {
     display: block;
   }

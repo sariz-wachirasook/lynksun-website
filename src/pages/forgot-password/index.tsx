@@ -49,7 +49,7 @@ const ForgotPasswordPage: FC = () => {
             <Card className="w-full max-w-md p-5 mb-5 opacity-50 pointer-events-none">
               {loading && (
                 <div className="flex items-center justify-center">
-                  <div className="w-6 h-6 mr-3 border-2 border-t-2 border-gray-900 rounded-full animate-spin"></div>
+                  <div className="w-6 h-6 mr-3 border border-t-2 border-gray-900 rounded-full animate-spin"></div>
                   <span>{t('loading')}</span>
                 </div>
               )}
