@@ -47,7 +47,7 @@ const Aside: FC = () => {
           <i className="fa-solid fa-bars" />
         </label>
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side md:top-[73px]">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content gap-y-2">
           {routes.map((route) => (

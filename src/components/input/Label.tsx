@@ -9,8 +9,10 @@ interface Props {
 
 const Label: FC<Props> = ({ label, required, className = '', name }) => {
   return (
-    <label htmlFor={name} className="block mb-2 text-sm font-medium">
-      {label} {required && <span className="text-red-500">*</span>}
+    <label htmlFor={name} className="label pt-0">
+      <span className="label-text">
+        {label} {required && <span className="text-red-500">*</span>}
+      </span>
     </label>
   );
 };

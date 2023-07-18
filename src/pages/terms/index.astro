@@ -1,9 +1,11 @@
 ---
 // @ts-ignore
-import DefaultLayout from '../../layouts/DefaultLayout.astro';
-import Page from './index';
+import DefaultLayout from '/src/layouts/DefaultLayout.astro';
+
+// @ts-ignore
+import CmsPosts from '/src/components/CmsPosts';
 ---
 
 <DefaultLayout>
-    <Page client:only />
+  <CmsPosts slug="terms" client:only />
 </DefaultLayout>

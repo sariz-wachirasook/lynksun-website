@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
-@import './base/normalize.css';
 @import './base/base.css';
 @import './base/typography.css';
+
+@import './components/input.css';
+@import './components/button.css';

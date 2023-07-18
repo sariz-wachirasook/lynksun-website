@@ -2,7 +2,11 @@ import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { setCookie } from '../utils/cookie';
 
-const LanguageSwitcher: FC = () => {
+interface Props {
+  className?: string;
+}
+
+const LanguageSwitcher: FC<Props> = ({ className }) => {
   const { t, i18n } = useTranslation();
   const availableLanguages = ['en', 'th'];
 
@@ -16,7 +20,7 @@ const LanguageSwitcher: FC = () => {
   };
 
   return (
-    <div className="dropdown dropdown-end">
+    <div className={`dropdown dropdown-end ${className}`}>
       <label tabIndex={0} className="btn btn-ghost btn-outline">
         <svg
           className="h-4 w-4 fill-current"
@@ -38,7 +42,9 @@ const LanguageSwitcher: FC = () => {
             <button
               type="button"
               onClick={() => handleChangeLanguage(language)}
-              className={`flex items-center justify-between w-full ${language === i18n.language ? 'active' : ''}`}
+              className={`flex items-center justify-between w-full ${
+                language === i18n.language ? 'active' : ''
+              }`}
             >
               <span>{t(`${language}`)}</span>
               {language === i18n.language && <i className="fa-solid fa-check" />}

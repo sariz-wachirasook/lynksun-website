@@ -113,7 +113,7 @@ const Page: FC = () => {
 
       {/* result */}
       <section
-        className={`max-h-0 overflow-hidden duration-300 transition-all ${link.short_url ? 'max-h-[250px]' : ''}`}
+        className={`max-h-0 overflow-hidden duration-300 transition-all ${link.short_url ? 'max-h-[300px] md:max-h-[250px]' : ''}`}
       >
         {loading && <CardSkeleton className="mt-5 max-w-xl mx-auto w-full" />}
         {link.short_url && !loading && (
@@ -137,7 +137,7 @@ const Page: FC = () => {
       </section>
 
       <section>
-        <ul className="grid md:grid-cols-3 gap-4 mx-12 lg:mx-24 mt-10">
+        <ul className="grid md:grid-cols-3 gap-4 sm:mx-12 lg:mx-24 mt-10">
           {features.map((feature, index) => (
             <li key={index} className="grid grid-cols-[auto,1fr] gap-4 shadow-lg rounded-3xl p-2">
               <div className="w-20 h-20 flex items-center rounded-full justify-center border border-base-200">

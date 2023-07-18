@@ -21,6 +21,7 @@ const Button: FC<Props> = ({
   className = '',
   children,
 }) => {
+  // btn-error, btn-alternative, btn-default
   const modifier = buttonType ? `btn-${buttonType}` : 'btn-primary';
   return (
     <button type={type} className={`btn ${modifier} ${className}`} onClick={onClick}>

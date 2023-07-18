@@ -38,7 +38,7 @@ const Navbar: FC = () => {
   ];
 
   return (
-    <div className="navbar bg-base-100 shadow-lg border border-base-300">
+    <div className="navbar bg-base-100 border border-base-300 sticky top-0 z-20">
       <div className="navbar-start">
         <a href={token ? '/app/links' : '/'} className="flex items-center">
           <img src="/white-logo.svg" alt="logo" className="w-[176px] h-[55px] logo-white" />
@@ -68,7 +68,7 @@ const Navbar: FC = () => {
         <div className="flex gap-2.5 items-center">
           {token && (
             <>
-              <h5>{$user?.name}</h5>
+              <h5>@{$user?.name}</h5>
               <div className="avatar pointer-events-none">
                 <div className="w-8 rounded-xl bg-base-200 !flex justify-center items-center uppercase font-bold">
                   {$user?.name ? $user?.name[0] : ''}
@@ -77,8 +77,8 @@ const Navbar: FC = () => {
             </>
           )}
           |
-          <ThemeSwitcher />
-          <LocaleSwitcher />
+          <LocaleSwitcher className="hidden md:block" />
+          <ThemeSwitcher className="hidden md:block" />
         </div>
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">

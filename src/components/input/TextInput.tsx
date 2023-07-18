@@ -38,7 +38,7 @@ const TextInput: FC<Props> = ({
   onChange,
 }) => {
   return (
-    <div className={`${label ? 'mb-4' : ''} ${className}`}>
+    <div className={`${label ? 'form-control w-full mb-4' : 'form-control w-full'} ${className}`}>
       {label && <Label label={label} name={name} required={required} />}
       <input
         className={`input input-bordered w-full ${type === 'search' ? 'pl-12' : ''}`}

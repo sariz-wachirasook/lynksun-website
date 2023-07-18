@@ -8,7 +8,11 @@ interface ThemeType {
   icon: string;
 }
 
-const ThemeSwitcher: FC = () => {
+interface Props {
+  className?: string;
+}
+
+const ThemeSwitcher: FC<Props> = ({ className }) => {
   const { t } = useTranslation();
   const [currentTheme, setCurrentTheme] = useState<ThemeType>();
 
@@ -59,10 +63,11 @@ const ThemeSwitcher: FC = () => {
       name: 'theme',
       value: theme.theme,
     });
+    setCurrentTheme(theme);
   };
 
   return (
-    <div className="dropdown dropdown-end">
+    <div className={`dropdown dropdown-end ${className}`}>
       <label tabIndex={0} className="btn btn-ghost btn-outline">
         <i className="fa-solid fa-palette"></i>
       </label>
@@ -75,7 +80,9 @@ const ThemeSwitcher: FC = () => {
             <button
               type="button"
               onClick={() => handleChangeTheme(theme)}
-              className={`flex items-center justify-between w-full ${currentTheme?.theme === theme.theme ? 'active' : ''}`}
+              className={`flex items-center justify-between w-full ${
+                currentTheme?.theme === theme.theme ? 'active' : ''
+              }`}
             >
               <span>{t(`${theme.theme}`)}</span>
               <i className="fa-solid fa-cupcake"></i>
