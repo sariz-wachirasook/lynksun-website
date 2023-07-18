@@ -1,6 +1,10 @@
 import { t } from 'i18next';
 
-export const formatDateTime = (datetime: string) => {
+export const formatDateTime = (datetime: string | null) => {
+  if (!datetime) {
+    return '';
+  }
+
   const date = new Date(datetime);
 
   return new Intl.DateTimeFormat('en-US', {
@@ -9,7 +13,11 @@ export const formatDateTime = (datetime: string) => {
   }).format(date);
 };
 
-export const getDate = (datetime: string) => {
+export const getDate = (datetime: string | null) => {
+  if (!datetime) {
+    return '';
+  }
+
   const date = new Date(datetime);
 
   return new Intl.DateTimeFormat('en-US', {
@@ -17,7 +25,11 @@ export const getDate = (datetime: string) => {
   }).format(date);
 };
 
-export const getTime = (datetime: string) => {
+export const getTime = (datetime: string | null) => {
+  if (!datetime) {
+    return '';
+  }
+
   const date = new Date(datetime);
 
   return new Intl.DateTimeFormat('en-US', {
@@ -25,7 +37,11 @@ export const getTime = (datetime: string) => {
   }).format(date);
 };
 
-export const getDateTime = (datetime: string) => {
+export const getDateTime = (datetime: string | null) => {
+  if (!datetime) {
+    return '';
+  }
+
   const date = new Date(datetime);
 
   return new Intl.DateTimeFormat('en-US', {
@@ -34,7 +50,11 @@ export const getDateTime = (datetime: string) => {
   }).format(date);
 };
 
-export const getSeason = (datetime: string) => {
+export const getSeason = (datetime: string | null) => {
+  if (!datetime) {
+    return '';
+  }
+
   const date = new Date(datetime);
   const month = date.getMonth() + 1;
   const season = Math.floor((month % 12) / 3);

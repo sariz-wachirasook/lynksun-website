@@ -38,10 +38,10 @@ const DefaultLayout = ({ children }: Props) => {
       {/* header */}
       <Navbar />
       {/* main */}
-      <main className="max-w-screen-xl mx-auto p-[1rem] min-h-[80vh]">{children}</main>
+      <main className="max-w-screen-xl mx-auto px-[1rem] py-[2rem] min-h-[80vh]">{children}</main>
 
       {/* footer */}
-      {/* <Footer /> */}
+      <Footer />
 
       <ToastContainer />
     </>

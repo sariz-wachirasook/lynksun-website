@@ -91,5 +91,7 @@
   "freemium": "Freemium",
   "freemium-description": "Free to use, but link will be expired in 24 hours",
   "fast": "Fast",
-  "fast-description": "Fastest way to shorten your link"
+  "fast-description": "Fastest way to shorten your link",
+  "qr-code": "QR Code",
+  "qr-code-description": "Download QR Code for your link"
 }

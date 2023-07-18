@@ -87,5 +87,11 @@
   "summer": "ฤดูร้อน",
   "autumn": "ฤดูใบไม้ร่วง",
   "winter": "ฤดูหนาว",
-  "fill-the-link-you-want-to-shorten": "กรอก URL ที่ต้องการสร้างลิงค์"
+  "fill-the-link-you-want-to-shorten": "กรอก URL ที่ต้องการสร้างลิงค์",
+  "freemium": "Freemium",
+  "freemium-description": "ฟรี ไม่มีค่าใช้จ่าย แต่จำกัดการใช้งาน",
+  "fast": "เร็ว",
+  "fast-description": "ย่อลิงค์ไว ได้ทันที",
+  "qr-code": "QR Code",
+  "qr-code-description": "สร้าง QR Code ให้กับลิงค์ของคุณ"
 }

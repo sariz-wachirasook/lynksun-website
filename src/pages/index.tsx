@@ -137,10 +137,10 @@ const Page: FC = () => {
       </section>
 
       <section>
-        <ul className="grid md:grid-cols-3 mx-auto gap-4 ml-24 mt-10">
+        <ul className="grid md:grid-cols-3 gap-4 mx-12 lg:mx-24 mt-10">
           {features.map((feature, index) => (
-            <li key={index} className="grid grid-cols-[auto,1fr] gap-4">
-              <div className="w-20 h-20 shadow-lg flex items-center rounded-full justify-center border border-base-200">
+            <li key={index} className="grid grid-cols-[auto,1fr] gap-4 shadow-lg rounded-3xl p-2">
+              <div className="w-20 h-20 flex items-center rounded-full justify-center border border-base-200">
                 <i className={`fa-solid text-2xl fa-${feature.icon}`}></i>
               </div>
               <div className="flex flex-col justify-center">
