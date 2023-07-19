@@ -85,7 +85,6 @@ const ThemeSwitcher: FC<Props> = ({ className }) => {
               }`}
             >
               <span>{t(`${theme.theme}`)}</span>
-              <i className="fa-solid fa-cupcake"></i>
               <i className={`fa-solid fa-${theme.icon}`} />
             </button>
           </li>
